@@ -395,17 +395,39 @@ const formSuccess = document.getElementById('formSuccess');
 const submitBtn = document.getElementById('submitBtn');
 
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     submitBtn.querySelector('span').textContent = 'Sending...';
     submitBtn.disabled = true;
-    setTimeout(() => {
+
+    const name = document.getElementById('formName').value;
+    const email = document.getElementById('formEmail').value;
+    const message = document.getElementById('formMessage').value;
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/Pinglepratham618@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (res.ok) {
+        submitBtn.querySelector('span').textContent = 'Send Message';
+        submitBtn.disabled = false;
+        formSuccess.classList.add('visible');
+        form.reset();
+        setTimeout(() => formSuccess.classList.remove('visible'), 4000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (err) {
       submitBtn.querySelector('span').textContent = 'Send Message';
       submitBtn.disabled = false;
-      formSuccess.classList.add('visible');
-      form.reset();
-      setTimeout(() => formSuccess.classList.remove('visible'), 4000);
-    }, 1200);
+      alert('Error sending message. Please try again or email directly.');
+    }
   });
 }
 

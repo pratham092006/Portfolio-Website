@@ -199,19 +199,22 @@ form?.addEventListener('submit', async e => {
   formNote.className = 'form-note';
 
   try {
-    const res  = await fetch('/api/contact', {
+    const res  = await fetch('https://formsubmit.co/ajax/Pinglepratham618@gmail.com', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       body: JSON.stringify({ name, email, message }),
     });
     const data = await res.json();
 
-    if (res.ok && data.success) {
+    if (res.ok) {
       formNote.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
       formNote.className = 'form-note success';
       form.reset();
     } else {
-      throw new Error(data.error || 'Something went wrong.');
+      throw new Error(data.message || data.error || 'Something went wrong.');
     }
   } catch (err) {
     formNote.textContent = `✗ ${err.message}`;
