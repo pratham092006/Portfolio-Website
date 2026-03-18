@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pratham Pingle — Portfolio</title>
+  <meta name="description" content="Pratham Uday Pingle — IT Student, Flutter Developer, Web Developer. Interactive Portfolio."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- NOISE OVERLAY -->
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span class="logo-bracket">&lt;</span>
+    <span class="logo-text">PP</span>
+    <span class="logo-bracket">/&gt;</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero" class="nav-link" data-text="Home">Home</a></li>
+    <li><a href="#about" class="nav-link" data-text="About">About</a></li>
+    <li><a href="#skills" class="nav-link" data-text="Skills">Skills</a></li>
+    <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
+    <li><a href="#experience" class="nav-link" data-text="Experience">Experience</a></li>
+    <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-badge glitch-badge">AVAILABLE FOR OPPORTUNITIES</div>
+    <h1 class="hero-name">
+      <span class="name-line reveal-line">PRATHAM</span>
+      <span class="name-line reveal-line delay-1">PINGLE</span>
+    </h1>
+    <div class="hero-role">
+      <span class="role-prefix">I&nbsp;</span>
+      <span class="typewriter" id="typewriter"></span>
+      <span class="cursor-blink">|</span>
+    </div>
+    <p class="hero-tagline reveal-fade delay-2">
+      B.Sc. IT Student @ St. Xavier's College, Mumbai<br/>
+      Building experiences that <span class="highlight-text">wow</span>.
+    </p>
+    <div class="hero-actions reveal-fade delay-3">
+      <a href="#projects" class="btn btn-primary">
+        <span>View Work</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="mailto:Pinglepratham618@gmail.com" class="btn btn-ghost">Hire Me</a>
+    </div>
+    <div class="hero-scroll reveal-fade delay-4">
+      <div class="scroll-indicator">
+        <div class="scroll-dot"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
+
+  <!-- floating cards -->
+  <div class="hero-cards">
+    <div class="float-card card-1">
+      <div class="card-icon">📱</div>
+      <span>Flutter Dev</span>
+    </div>
+    <div class="float-card card-2">
+      <div class="card-icon">🌐</div>
+      <span>Web Dev</span>
+    </div>
+    <div class="float-card card-3">
+      <div class="card-icon">🎓</div>
+      <span>IT Student</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">01 / WHO AM I</span>
+      <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="avatar-container" id="avatarContainer">
+          <div class="avatar-ring ring-1"></div>
+          <div class="avatar-ring ring-2"></div>
+          <div class="avatar-ring ring-3"></div>
+          <div class="avatar-core">
+            <span class="avatar-initials">PP</span>
+          </div>
+          <!-- orbiting icons -->
+          <div class="orbit orbit-1">
+            <div class="orbit-item" style="--angle:0deg">🔥</div>
+          </div>
+          <div class="orbit orbit-2">
+            <div class="orbit-item" style="--angle:180deg">⚡</div>
+          </div>
+          <div class="orbit orbit-3">
+            <div class="orbit-item" style="--angle:90deg">💡</div>
+          </div>
+        </div>
+
+        <!-- fidget spinner easter egg -->
+        <div class="fidget-hint">
+          <div class="spinner-wrapper" id="spinnerBtn" title="Click me!">
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-blade"></div>
+            <div class="spinner-center"></div>
+          </div>
+          <span class="fidget-label">Click to spin!</span>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="about-text">
+          Hey! I'm <strong>Pratham Pingle</strong>, a passionate IT student from Mumbai with a love for building clean, functional, and beautiful digital experiences. Currently pursuing my B.Sc. in Information Technology at <strong>St. Xavier's College, Mumbai</strong>.
+        </p>
+        <p class="about-text">
+          I've got real-world experience as a <strong>Flutter App Developer Intern</strong> and love tinkering with everything from mobile apps to full-stack web projects. When I'm not coding, you'll find me volunteering at college fests like <strong>Malhar</strong>.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number counter" data-target="2">0</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number counter" data-target="5">0</div>
+            <div class="stat-label">Tech Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number counter" data-target="10">0</div>
+            <div class="stat-label">Skills</div>
+          </div>
+        </div>
+
+        <div class="about-links">
+          <a href="mailto:Pinglepratham618@gmail.com" class="contact-chip">
+            <span>📧</span> Pinglepratham618@gmail.com
+          </a>
+          <a href="tel:8928849217" class="contact-chip">
+            <span>📞</span> +91 8928849217
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-chip">
+            <span>💼</span> LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section section-dark" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">02 / WHAT I KNOW</span>
+      <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+    </div>
+
+    <!-- Interactive skill orbs -->
+    <div class="skills-orbs" id="skillsOrbs">
+      <div class="skill-orb" data-skill="HTML" data-level="90" style="--hue:25">HTML</div>
+      <div class="skill-orb" data-skill="CSS" data-level="85" style="--hue:220">CSS</div>
+      <div class="skill-orb" data-skill="JavaScript" data-level="80" style="--hue:55">JS</div>
+      <div class="skill-orb" data-skill="Python" data-level="70" style="--hue:200">Python</div>
+      <div class="skill-orb" data-skill="Java" data-level="60" style="--hue:15">Java</div>
+      <div class="skill-orb" data-skill="Flutter" data-level="75" style="--hue:190">Flutter</div>
+      <div class="skill-orb" data-skill="Node.js" data-level="72" style="--hue:120">Node.js</div>
+      <div class="skill-orb" data-skill="SQL" data-level="68" style="--hue:280">SQL</div>
+      <div class="skill-orb" data-skill="Git" data-level="80" style="--hue:15">Git</div>
+      <div class="skill-orb" data-skill="REST API" data-level="70" style="--hue:160">REST API</div>
+    </div>
+
+    <!-- Skill tooltip -->
+    <div class="skill-tooltip" id="skillTooltip">
+      <div class="tooltip-skill-name" id="tooltipName">Skill</div>
+      <div class="tooltip-bar">
+        <div class="tooltip-fill" id="tooltipFill"></div>
+      </div>
+      <div class="tooltip-level" id="tooltipLevel">0%</div>
+    </div>
+
+    <div class="skills-categories">
+      <div class="skill-cat">
+        <div class="cat-icon">🧠</div>
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-icon">🛠️</div>
+        <h3>Frameworks & Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Flutter / Dart</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-icon">🌐</div>
+        <h3>Web & App Dev</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">REST API</span>
+          <span class="skill-tag">UI Design</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-icon">🗄️</div>
+        <h3>Database</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">DBMS</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-icon">📊</div>
+        <h3>Data & Logic</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Algo Thinking</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-icon">🤝</div>
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Team Collab</span>
+          <span class="skill-tag">Time Mgmt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">03 / WHAT I BUILT</span>
+      <h2 class="section-title">My <span class="gradient-text">Projects</span></h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card" id="proj1">
+        <div class="project-glow"></div>
+        <div class="project-header">
+          <div class="project-num">01</div>
+          <div class="project-links">
+            <span class="proj-tag">Web App</span>
+          </div>
+        </div>
+        <h3 class="project-title">MYpins</h3>
+        <span class="project-sub">Pinterest Clone</span>
+        <p class="project-desc">
+          A responsive Pinterest-style web application with image upload, explore feed, and user authentication. Built with a full Node.js backend.
+        </p>
+        <div class="project-tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
+        </div>
+        <div class="project-features">
+          <div class="feat-item"><span>✦</span> Image Upload</div>
+          <div class="feat-item"><span>✦</span> Explore Feed</div>
+          <div class="feat-item"><span>✦</span> User Auth</div>
+        </div>
+        <div class="project-footer">
+          <div class="project-badge">Full Stack</div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card" id="proj2">
+        <div class="project-glow"></div>
+        <div class="project-header">
+          <div class="project-num">02</div>
+          <div class="project-links">
+            <span class="proj-tag">Mobile App</span>
+          </div>
+        </div>
+        <h3 class="project-title">ClassMgr</h3>
+        <span class="project-sub">Classroom Management App</span>
+        <p class="project-desc">
+          A Flutter mobile app for teachers to view classroom availability and book rooms for lectures and events with real-time booking management.
+        </p>
+        <div class="project-tech">
+          <span>Flutter</span><span>Dart</span><span>Backend API</span><span>Database</span>
+        </div>
+        <div class="project-features">
+          <div class="feat-item"><span>✦</span> Room Availability</div>
+          <div class="feat-item"><span>✦</span> Booking System</div>
+          <div class="feat-item"><span>✦</span> Teacher UI</div>
+        </div>
+        <div class="project-footer">
+          <div class="project-badge">Flutter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive code terminal -->
+    <div class="terminal-box" id="terminal">
+      <div class="terminal-header">
+        <div class="term-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <span class="term-title">pratham@portfolio:~$</span>
+      </div>
+      <div class="terminal-body" id="termBody">
+        <div class="term-line">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd" id="termCmd"></span>
+          <span class="term-cursor">█</span>
+        </div>
+        <div class="term-output" id="termOutput"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section section-dark" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">04 / MY JOURNEY</span>
+      <h2 class="section-title">Experience & <span class="gradient-text">Education</span></h2>
+    </div>
+
+    <div class="timeline">
+      <!-- Internship -->
+      <div class="timeline-item" data-aos>
+        <div class="timeline-dot">
+          <div class="dot-inner">💼</div>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="tl-date">Feb 2026 – Mar 2026</span>
+            <span class="tl-badge intern">Internship</span>
+          </div>
+          <h3>Flutter App Developer Intern</h3>
+          <p class="tl-company">Riamona Luxury and Fashion Brands Pvt. Ltd.</p>
+          <ul class="tl-points">
+            <li>Built a full-stack mobile application using Flutter</li>
+            <li>Developed UI components, navigation, and app features using Flutter widgets</li>
+            <li>Integrated backend APIs for data handling and functionality</li>
+            <li>Improved UI responsiveness and assisted with debugging & testing</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="timeline-item" data-aos>
+        <div class="timeline-dot">
+          <div class="dot-inner">🎓</div>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="tl-date">Pursuing</span>
+            <span class="tl-badge edu">Education</span>
+          </div>
+          <h3>B.Sc. Information Technology</h3>
+          <p class="tl-company">St. Xavier's College, Mumbai</p>
+          <ul class="tl-points">
+            <li>Data Structures &amp; Algorithms</li>
+            <li>Database Management Systems</li>
+            <li>Web Technologies</li>
+            <li>Software Engineering &amp; Data Analytics</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Volunteering -->
+      <div class="timeline-item" data-aos>
+        <div class="timeline-dot">
+          <div class="dot-inner">🌟</div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-meta">
+            <span class="tl-date">2024 – 2025</span>
+            <span class="tl-badge vol">Volunteer</span>
+          </div>
+          <h3>Technical Team Member</h3>
+          <p class="tl-company">College Events — St. Xavier's College</p>
+          <ul class="tl-points">
+            <li>🎉 Malhar Festival 2024 & 2025 — Technical Volunteer</li>
+            <li>🎉 Hvam 2025 — Technical Member</li>
+            <li>🎉 Anatas 2025 — Technical Member</li>
+            <li>🎉 TFS 2025 — Technical Member</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="certs-section">
+      <h3 class="certs-title">📜 Certifications</h3>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon">🤖</div>
+          <div class="cert-info">
+            <h4>GenAI Powered Data Analytics</h4>
+            <p>Job Simulation Certificate</p>
+          </div>
+          <div class="cert-glow-dot"></div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">💻</div>
+          <div class="cert-info">
+            <h4>MS-CIT</h4>
+            <p>Maharashtra State — Computer Literacy</p>
+          </div>
+          <div class="cert-glow-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIDGET ZONE -->
+<section class="section fidget-section" id="fidget">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">05 / TAKE A BREAK</span>
+      <h2 class="section-title">Fidget <span class="gradient-text">Zone</span></h2>
+      <p class="section-sub">Because every great dev needs a way to destress 😄</p>
+    </div>
+    <div class="fidget-grid">
+
+      <!-- Big Fidget Spinner -->
+      <div class="fidget-card" id="bigSpinnerCard">
+        <h3>Fidget Spinner</h3>
+        <p>Click & hold to spin!</p>
+        <div class="big-spinner" id="bigSpinner">
+          <div class="big-blade blade-a">
+            <div class="blade-circle"></div>
+          </div>
+          <div class="big-blade blade-b">
+            <div class="blade-circle"></div>
+          </div>
+          <div class="big-blade blade-c">
+            <div class="blade-circle"></div>
+          </div>
+          <div class="big-center"></div>
+        </div>
+        <div class="spin-speed-display">RPM: <span id="rpmDisplay">0</span></div>
+      </div>
+
+      <!-- Bouncing Ball -->
+      <div class="fidget-card" id="bouncingBallCard">
+        <h3>Bounce Ball</h3>
+        <p>Click to launch!</p>
+        <div class="bounce-arena" id="bounceArena">
+          <div class="bounce-ball" id="bounceBall">🏀</div>
+        </div>
+      </div>
+
+      <!-- Color Mixer -->
+      <div class="fidget-card" id="colorMixerCard">
+        <h3>Color Mixer</h3>
+        <p>Drag the sliders!</p>
+        <div class="color-display" id="colorDisplay"></div>
+        <div class="color-sliders">
+          <label>R <input type="range" id="rSlider" min="0" max="255" value="150" class="color-range r-range"/></label>
+          <label>G <input type="range" id="gSlider" min="0" max="255" value="80" class="color-range g-range"/></label>
+          <label>B <input type="range" id="bSlider" min="0" max="255" value="220" class="color-range b-range"/></label>
+        </div>
+        <div class="color-hex" id="colorHex">#9650DC</div>
+      </div>
+
+      <!-- Clicker game -->
+      <div class="fidget-card" id="clickerCard">
+        <h3>Code Clicker</h3>
+        <p>Click the button as fast as you can!</p>
+        <div class="clicker-display">
+          <div class="click-count" id="clickCount">0</div>
+          <div class="click-label">lines of code 😆</div>
+        </div>
+        <button class="click-btn" id="clickBtn">
+          <span>&lt;/&gt;</span>
+        </button>
+        <div class="click-streak" id="clickStreak"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">06 / LET'S TALK</span>
+      <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+      <p class="section-sub">Open to internships, collaborations, and exciting ideas!</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="cc-icon">📧</div>
+          <div class="cc-text">
+            <span>Email</span>
+            <a href="mailto:Pinglepratham618@gmail.com">Pinglepratham618@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📱</div>
+          <div class="cc-text">
+            <span>Phone</span>
+            <a href="tel:8928849217">+91 8928849217</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📍</div>
+          <div class="cc-text">
+            <span>Location</span>
+            <p>Mumbai, India</p>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">💼</div>
+          <div class="cc-text">
+            <span>LinkedIn</span>
+            <a href="https://linkedin.com" target="_blank">Connect with me</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <input type="text" id="formName" placeholder=" " required/>
+          <label for="formName">Your Name</label>
+          <div class="form-line"></div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="formEmail" placeholder=" " required/>
+          <label for="formEmail">Your Email</label>
+          <div class="form-line"></div>
+        </div>
+        <div class="form-group">
+          <textarea id="formMessage" placeholder=" " rows="4" required></textarea>
+          <label for="formMessage">Your Message</label>
+          <div class="form-line"></div>
+        </div>
+        <button type="submit" class="btn btn-primary full-width" id="submitBtn">
+          <span>Send Message</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </button>
+        <div class="form-success" id="formSuccess">
+          🎉 Message sent! I'll get back to you soon.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <span class="logo-bracket">&lt;</span>
+      <span>Pratham Pingle</span>
+      <span class="logo-bracket">/&gt;</span>
+    </div>
+    <p class="footer-tagline">Crafted with ❤️ + ☕ in Mumbai</p>
+    <div class="footer-links">
+      <a href="mailto:Pinglepratham618@gmail.com">Email</a>
+      <a href="tel:8928849217">Phone</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    </div>
+    <p class="footer-copy">© 2026 Pratham Uday Pingle. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
