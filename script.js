@@ -67,8 +67,9 @@ class Particle {
     this.size = Math.random() * 2 + 0.5;
     this.speedX = (Math.random() - 0.5) * 0.4;
     this.speedY = (Math.random() - 0.5) * 0.4;
-    this.opacity = Math.random() * 0.4 + 0.05;
-    this.color = `rgba(255, 255, 255, ${this.opacity})`;
+    this.opacity = Math.random() * 0.6 + 0.1;
+    const hue = Math.random() > 0.5 ? 260 : 190;
+    this.color = `hsla(${hue}, 80%, 70%, ${this.opacity})`;
   }
   update() {
     this.x += this.speedX;
@@ -95,7 +96,7 @@ function drawConnections() {
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - dist / 100) * 0.1})`;
+        ctx.strokeStyle = `rgba(124,58,237,${(1 - dist / 100) * 0.15})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
       }

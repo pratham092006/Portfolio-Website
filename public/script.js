@@ -88,7 +88,7 @@ function drawCanvas() {
     ctx.beginPath();
     ctx.arc(d.x, d.y, 1.5, 0, Math.PI * 2);
     const highlight = factor > 0.3 ? 1 : d.opacity;
-    ctx.fillStyle = `rgba(0,0,0,${highlight * (factor > 0.3 ? 0.3 : 0.08)})`;
+    ctx.fillStyle = `rgba(37,99,235,${highlight * (factor > 0.3 ? 0.6 : 0.2)})`;
     ctx.fill();
   });
   requestAnimationFrame(drawCanvas);
