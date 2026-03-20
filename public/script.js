@@ -24,14 +24,24 @@ document.querySelectorAll('a, button, input, textarea, .pill-list span, .project
 const nav = document.getElementById('nav');
 const navLinks = document.querySelectorAll('.nav-list a');
 const allSections = document.querySelectorAll('section[id]');
+const scrollProgress = document.getElementById('scrollProgress');
 
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const scrolled = window.scrollY;
+  
+  // Scroll Progress Bar
+  if (scrollProgress) {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrolled / maxScroll) * 100;
+    scrollProgress.style.width = progress + '%';
+  }
+
+  nav.classList.toggle('scrolled', scrolled > 20);
 
   // Active nav link
   let current = '';
   allSections.forEach(sec => {
-    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    if (scrolled >= sec.offsetTop - 120) current = sec.id;
   });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${current}`));
 }, { passive: true });
@@ -166,11 +176,44 @@ const io = new IntersectionObserver(entries => {
 
 // Register elements
 document.querySelectorAll(
-  '.about-text, .about-stats, .stat, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form'
+  '.section-heading, .about-text, .about-stats, .stat, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form'
 ).forEach(el => {
   el.classList.add('fade-up');
   io.observe(el);
 });
+
+/* ── 3D CARD TILT EFFECT ─────────────────────────────────── */
+document.querySelectorAll('.project-card, .cert-item').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    
+    card.classList.add('tilt-active');
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('tilt-active');
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  });
+});
+
+/* ── HERO PARALLAX ───────────────────────────────────────── */
+const heroBlobs = document.querySelectorAll('.blob');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  // Canvas parallax
+  if (canvas) canvas.style.transform = `translateY(${scrolled * 0.4}px)`;
+  // Blobs parallax
+  heroBlobs.forEach((blob, i) => {
+    blob.style.transform = `translateY(${scrolled * (0.2 + i * 0.15)}px)`;
+  });
+}, { passive: true });
 
 /* ── CONTACT FORM (AJAX → /api/contact) ──────────────────── */
 const form       = document.getElementById('contactForm');
