@@ -42,85 +42,37 @@ const navList = document.getElementById('navList');
 hamburger?.addEventListener('click', () => navList.classList.toggle('open'));
 navLinks.forEach(l => l.addEventListener('click', () => navList.classList.remove('open')));
 
-/* ── HERO CANVAS (subtle dot grid + mouse parallax) ──────── */
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-let W, H, dots = [];
+/* Canvas removed in new design */
 
-function resize() {
-  W = canvas.width = canvas.offsetWidth;
-  H = canvas.height = canvas.offsetHeight;
-}
-resize();
-window.addEventListener('resize', () => { resize(); initDots(); });
-
-function initDots() {
-  dots = [];
-  const cols = Math.floor(W / 44), rows = Math.floor(H / 44);
-  for (let r = 0; r <= rows; r++) {
-    for (let c = 0; c <= cols; c++) {
-      dots.push({
-        bx: c * 44 + 22, by: r * 44 + 22,
-        x: 0, y: 0, opacity: Math.random() * 0.4 + 0.05
-      });
-    }
-  }
-}
-initDots();
-
-let heroMouseX = W / 2, heroMouseY = H / 2;
-document.querySelector('.hero')?.addEventListener('mousemove', e => {
-  const rect = canvas.getBoundingClientRect();
-  heroMouseX = e.clientX - rect.left;
-  heroMouseY = e.clientY - rect.top;
-});
-
-function drawCanvas() {
-  ctx.clearRect(0, 0, W, H);
-  const strength = 18;
-  dots.forEach(d => {
-    const dx = d.bx - heroMouseX, dy = d.by - heroMouseY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const factor = Math.max(0, 1 - dist / 220);
-    d.x = d.bx + (dx / Math.max(dist, 1)) * factor * -strength;
-    d.y = d.by + (dy / Math.max(dist, 1)) * factor * -strength;
-
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, 1.5, 0, Math.PI * 2);
-    const highlight = factor > 0.3 ? 1 : d.opacity;
-    ctx.fillStyle = `rgba(37,99,235,${highlight * (factor > 0.3 ? 0.6 : 0.2)})`;
-    ctx.fill();
-  });
-  requestAnimationFrame(drawCanvas);
-}
-drawCanvas();
-
-/* ── TYPEWRITER ──────────────────────────────────────────── */
+/* ── ROLE CAROUSEL ───────────────────────────────────────── */
+const roleCarousel = document.getElementById('roleCarousel');
 const roles = [
-  'build Web Apps.',
-  'develop Flutter Apps.',
-  'love problem solving.',
-  'explore data analytics.',
-  'design clean UIs.',
-  'volunteer at Malhar.',
+  'build Web Apps',
+  'develop Mobile Apps',
+  'solve problems',
+  'learn & grow',
+  'create experiences',
+  'volunteer & help',
 ];
-let ri = 0, ci = 0, deleting = false;
-const twEl = document.getElementById('typewriter');
+let currentRoleIndex = 0;
 
-function type() {
-  if (!twEl) return;
-  const cur = roles[ri];
-  if (deleting) {
-    twEl.textContent = cur.slice(0, --ci);
-    if (ci <= 0) { deleting = false; ri = (ri + 1) % roles.length; }
-    setTimeout(type, 55);
-  } else {
-    twEl.textContent = cur.slice(0, ++ci);
-    if (ci >= cur.length) { deleting = true; setTimeout(type, 1600); }
-    else setTimeout(type, 85);
-  }
+function rotateRole() {
+  if (!roleCarousel) return;
+  currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+  roleCarousel.style.opacity = '0';
+  roleCarousel.style.transform = 'translateY(-10px)';
+  
+  setTimeout(() => {
+    roleCarousel.textContent = roles[currentRoleIndex];
+    roleCarousel.style.opacity = '1';
+    roleCarousel.style.transform = 'translateY(0)';
+  }, 300);
 }
-setTimeout(type, 600);
+
+if (roleCarousel) {
+  roleCarousel.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  setInterval(rotateRole, 2500);
+}
 
 /* ── COUNTER ANIMATION ───────────────────────────────────── */
 function animateCount(el) {
@@ -166,7 +118,7 @@ const io = new IntersectionObserver(entries => {
 
 // Register elements
 document.querySelectorAll(
-  '.about-text, .about-stats, .stat, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form'
+  '.about-text, .about-stats, .stat, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form, .tech-category'
 ).forEach(el => {
   el.classList.add('fade-up');
   io.observe(el);
