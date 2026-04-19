@@ -6,10 +6,10 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:          #F5F5F0;
-  --bg-alt:      #EBEBEB;
+  --bg:          #FAF9F6;
+  --bg-alt:      #F2F1EE;
   --surface:     #FFFFFF;
-  --surface-2:   #F8F8F5;
+  --surface-2:   #FDFCFA;
   --border:      #E2E2DC;
   --border-hover:#B0B0A8;
   --text:        #1A1A1A;
@@ -70,13 +70,13 @@ body {
 .nav {
   position: fixed; top: 0; inset-inline: 0; z-index: 100;
   padding: 0 clamp(20px, 4vw, 48px);
-  background: rgba(245,245,240,0.92);
+  background: rgba(250,249,246,0.92);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);
   transition: all 0.3s var(--ease);
 }
 .nav.scrolled {
-  background: rgba(245,245,240,0.97);
+  background: rgba(250,249,246,0.97);
   box-shadow: var(--shadow-sm);
 }
 .nav-inner {
@@ -681,7 +681,7 @@ body {
 }
 @media (max-width: 768px) {
   .nav { padding: 0 20px; }
-  .nav-list { display: none; position: absolute; top: 68px; left: 0; right: 0; background: rgba(245,245,240,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 16px 24px 24px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .nav-list { display: none; position: absolute; top: 68px; left: 0; right: 0; background: rgba(250,249,246,0.98); backdrop-filter: blur(16px); flex-direction: column; padding: 16px 24px 24px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); }
   .nav-list.open { display: flex; }
   .hamburger { display: flex; }
   .hero-inner { grid-template-columns: 1fr; padding-top: 40px; }
