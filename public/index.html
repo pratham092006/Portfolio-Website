@@ -7,27 +7,29 @@
   <meta name="description" content="Pratham Pingle — IT Student, Flutter & Web Developer from Mumbai."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-count" id="loaderCount">0</div>
+  <div class="loader-inner">
+    <div class="loader-text">LOADING</div>
+    <div class="loader-count" id="loaderCount">0</div>
+  </div>
 </div>
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursorFollower"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo">pratham<span>.</span></a>
+  <a href="#" class="nav-logo">PRATHAM.</a>
   <ul class="nav-links" id="navList">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#work">WORK</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
   </ul>
   <button class="nav-toggle" id="hamburger" aria-label="Menu"><span></span><span></span></button>
 </nav>
@@ -35,29 +37,38 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow reveal">
-      <span class="dot-pulse"></span>
-      <span>Available for opportunities</span>
+    <div class="hero-main-text">
+      <h1 class="hero-title">
+        <span class="line"><span class="solid">PRATHAM</span></span>
+        <span class="line"><span class="stroke">PINGLE</span></span>
+        <span class="line"><span class="solid cyan">DEVELOPER</span></span>
+      </h1>
     </div>
-    <h1 class="hero-title">
-      <span class="line reveal"><span class="word">I build</span></span>
-      <span class="line reveal"><span class="word">digital</span></span>
-      <span class="line reveal"><span class="word accent">experiences.</span></span>
-    </h1>
+    
     <div class="hero-bottom reveal">
-      <p class="hero-desc">Flutter & Web Developer<br/>based in Mumbai, India</p>
+      <div class="availability">
+         <span class="dot-pulse"></span>
+         <span class="mono">AVAILABLE FOR OPPORTUNITIES</span>
+      </div>
       <a href="#work" class="hero-cta">
-        <span>See my work</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <span>VIEW PROJECTS</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
     </div>
   </div>
 </section>
 
 <!-- TAPE MARQUEE -->
-<div class="tape">
-  <div class="tape-track">
-    <span>WEB DEVELOPER</span><span>★</span><span>FLUTTER DEV</span><span>★</span><span>UI DESIGNER</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span><span>WEB DEVELOPER</span><span>★</span><span>FLUTTER DEV</span><span>★</span><span>UI DESIGNER</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span>
+<div class="tape-wrapper">
+  <div class="tape tape-cyan">
+    <div class="tape-track">
+      <span>DIGITAL EXPERIENCES</span><span>★</span><span>UI DESIGN</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span><span>DIGITAL EXPERIENCES</span><span>★</span><span>UI DESIGN</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span>
+    </div>
+  </div>
+  <div class="tape tape-lime reverse">
+    <div class="tape-track">
+      <span>CREATIVE DEVELOPMENT</span><span>★</span><span>FLUTTER</span><span>★</span><span>REACT</span><span>★</span><span>CREATIVE DEVELOPMENT</span><span>★</span><span>FLUTTER</span><span>★</span><span>REACT</span><span>★</span>
+    </div>
   </div>
 </div>
 
@@ -65,79 +76,91 @@
 <section class="section" id="work">
   <div class="container">
     <div class="section-head reveal">
-      <span class="label">Selected Work</span>
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title">SELECTED <br><span class="stroke">WORKS</span></h2>
     </div>
 
     <div class="projects">
       <a href="https://my-pins-final-main.vercel.app/" target="_blank" class="project reveal">
-        <div class="project-info">
-          <span class="project-num">01</span>
-          <h3>MYpins</h3>
-          <p>Pinterest-style web app with image upload, explore feed, and full user authentication — Node.js backend.</p>
-          <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span></div>
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-num">01</span>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span></div>
+          </div>
+          <h3>MYPINS</h3>
+          <p>Pinterest-style web app with image upload, explore feed, and full user authentication.</p>
         </div>
-        <span class="project-arrow">↗</span>
+        <div class="project-hover-bg lime"></div>
       </a>
+      
       <a href="https://lockin-app-ten.vercel.app/" target="_blank" class="project reveal">
-        <div class="project-info">
-          <span class="project-num">02</span>
-          <h3>LockIn</h3>
-          <p>Productivity app to stay focused, organize daily priorities, and build consistency with a distraction-free experience.</p>
-          <div class="project-tags"><span>Web App</span><span>Productivity</span><span>UI/UX</span><span>Vercel</span></div>
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-num">02</span>
+            <div class="project-tags"><span>Web App</span><span>Productivity</span><span>Vercel</span></div>
+          </div>
+          <h3>LOCKIN</h3>
+          <p>Productivity app to stay focused, organize daily priorities, and build consistency.</p>
         </div>
-        <span class="project-arrow">↗</span>
+        <div class="project-hover-bg cyan"></div>
       </a>
+
       <a href="https://predictive-maintenance-api.vercel.app/ui/" target="_blank" class="project reveal">
-        <div class="project-info">
-          <span class="project-num">03</span>
-          <h3>Predictive Maintenance API</h3>
-          <p>Browsable API interface for predictive maintenance workflows — inspect endpoints, test payloads, review responses.</p>
-          <div class="project-tags"><span>API UI</span><span>Docs</span><span>Analytics</span><span>Vercel</span></div>
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-num">03</span>
+            <div class="project-tags"><span>API</span><span>Analytics</span><span>Vercel</span></div>
+          </div>
+          <h3>PREDICTIVE<br>API</h3>
+          <p>Browsable API interface for predictive maintenance workflows to inspect endpoints and responses.</p>
         </div>
-        <span class="project-arrow">↗</span>
+        <div class="project-hover-bg pink"></div>
       </a>
+
       <a href="https://github.com/pratham092006/Classmrgr" target="_blank" class="project reveal">
-        <div class="project-info">
-          <span class="project-num">04</span>
-          <h3>ClassMgr</h3>
-          <p>Flutter mobile app for teachers to check room availability and book classrooms for lectures and events in real time.</p>
-          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>Backend API</span><span>Database</span></div>
+        <div class="project-content">
+          <div class="project-header">
+            <span class="project-num">04</span>
+            <div class="project-tags"><span>Flutter</span><span>Dart</span><span>Backend</span></div>
+          </div>
+          <h3>CLASSMGR</h3>
+          <p>Mobile app for teachers to check room availability and book classrooms in real time.</p>
         </div>
-        <span class="project-arrow">↗</span>
+        <div class="project-hover-bg yellow"></div>
       </a>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section section-dark" id="about">
+<section class="section" id="about">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="label">About</span>
-      <h2 class="section-title">A bit about me</h2>
-    </div>
     <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I'm <strong>Pratham Pingle</strong>, an IT student at St. Xavier's College, Mumbai. I build clean, functional digital experiences — from responsive web apps to cross-platform mobile apps with Flutter.</p>
-        <p>I've interned at <strong>Riamona Luxury & Fashion Brands</strong>, where I shipped a full Flutter mobile app. Outside of code, I volunteer at Malhar and other college fests.</p>
-      </div>
-      <div class="about-details reveal">
-        <div class="detail-block">
-          <h4>Experience</h4>
-          <div class="detail-item"><span>Flutter Dev Intern</span><span class="dim">Riamona · 2026</span></div>
-          <div class="detail-item"><span>Technical Volunteer</span><span class="dim">Malhar · 2024–25</span></div>
+      <div class="about-main reveal">
+        <h2 class="section-title">ABOUT <span class="stroke">ME</span></h2>
+        <div class="about-text">
+          <p>I'm <strong>Pratham Pingle</strong>, an IT student at St. Xavier's College, Mumbai. I build clean, functional digital experiences — from responsive web apps to cross-platform mobile apps with Flutter.</p>
+          <p>I've interned at <strong>Riamona Luxury &amp; Fashion Brands</strong>, shipping a full Flutter app. Outside of code, I volunteer at Malhar and other college fests.</p>
         </div>
-        <div class="detail-block">
-          <h4>Stack</h4>
+      </div>
+      
+      <div class="about-details">
+        <div class="detail-card reveal" style="background: var(--lime);">
+          <h4>EXPERIENCE</h4>
+          <div class="detail-item"><strong>Flutter Dev Intern</strong><span>Riamona · 2026</span></div>
+          <div class="detail-item"><strong>Technical Volunteer</strong><span>Malhar · 2024–25</span></div>
+        </div>
+        
+        <div class="detail-card reveal" style="background: var(--cyan);">
+          <h4>CERTIFICATIONS</h4>
+          <div class="detail-item"><strong>GenAI Analytics</strong><span>Job Simulation</span></div>
+          <div class="detail-item"><strong>MS-CIT</strong><span>Maharashtra State</span></div>
+        </div>
+        
+        <div class="detail-card black reveal">
+          <h4>TECH STACK</h4>
           <div class="stack-pills">
             <span>Flutter</span><span>Dart</span><span>JavaScript</span><span>Python</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>SQL</span><span>Git</span><span>Firebase</span><span>Figma</span>
           </div>
-        </div>
-        <div class="detail-block">
-          <h4>Certifications</h4>
-          <div class="detail-item"><span>GenAI Powered Data Analytics</span><span class="dim">Job Simulation</span></div>
-          <div class="detail-item"><span>MS-CIT</span><span class="dim">Maharashtra State</span></div>
         </div>
       </div>
     </div>
@@ -148,26 +171,25 @@
 <section class="section" id="contact">
   <div class="container">
     <div class="contact-block reveal">
-      <span class="label">Get in touch</span>
-      <h2 class="contact-title">Let's build<br/>something <em>great</em>.</h2>
+      <h2 class="contact-title">LET'S <span class="stroke">TALK</span></h2>
       <div class="contact-links">
-        <a href="https://mail.google.com/mail/?view=cm&to=Pinglepratham618@gmail.com" target="_blank" class="contact-link">
-          <span class="cl-name">Email</span>
+        <a href="https://mail.google.com/mail/?view=cm&amp;to=Pinglepratham618@gmail.com" target="_blank" class="contact-link">
+          <span class="cl-name">EMAIL</span>
           <span class="cl-value">Pinglepratham618@gmail.com</span>
           <span class="cl-arrow">↗</span>
         </a>
         <a href="https://www.linkedin.com/in/pratham-pingle-71a977318/" target="_blank" class="contact-link">
-          <span class="cl-name">LinkedIn</span>
+          <span class="cl-name">LINKEDIN</span>
           <span class="cl-value">pratham-pingle</span>
           <span class="cl-arrow">↗</span>
         </a>
         <a href="tel:+918928849217" class="contact-link">
-          <span class="cl-name">Phone</span>
+          <span class="cl-name">PHONE</span>
           <span class="cl-value">+91 89288 49217</span>
           <span class="cl-arrow">↗</span>
         </a>
         <a href="https://github.com/pratham092006" target="_blank" class="contact-link">
-          <span class="cl-name">GitHub</span>
+          <span class="cl-name">GITHUB</span>
           <span class="cl-value">pratham092006</span>
           <span class="cl-arrow">↗</span>
         </a>
@@ -179,8 +201,8 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 Pratham Pingle</span>
-    <span>Crafted in Mumbai</span>
+    <span>© 2026 PRATHAM PINGLE</span>
+    <span>CRAFTED IN MUMBAI</span>
   </div>
 </footer>
 
