@@ -3,301 +3,175 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pratham Pingle — Portfolio</title>
-  <meta name="description" content="Pratham Uday Pingle — IT Student, Flutter Developer & Web Developer based in Mumbai. BMW enthusiast."/>
+  <title>Pratham Pingle — Developer</title>
+  <meta name="description" content="Pratham Pingle — IT Student, Flutter & Web Developer from Mumbai."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader"><div class="loader-inner"><div class="loader-line"></div><span class="loader-text">PRATHAM PINGLE</span></div></div>
+<div class="loader" id="loader">
+  <div class="loader-count" id="loaderCount">0</div>
+</div>
 
-<!-- CURSOR DOT -->
-<div class="cursor-dot" id="cursorDot"></div>
-
-<!-- SOUND TOGGLE -->
-<button class="sound-toggle" id="soundToggle" aria-label="Toggle Sound">🔇</button>
-<audio id="engineSound" loop preload="auto">
-  <source src="https://cdn.pixabay.com/audio/2023/10/24/audio_9242964e52.mp3" type="audio/mpeg"/>
-</audio>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#hero" class="nav-brand">PP<span class="dot-accent">.</span></a>
-    <ul class="nav-list" id="navList">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#tech">Tech Stack</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="https://mail.google.com/mail/?view=cm&to=Pinglepratham618@gmail.com" target="_blank" class="btn-hire">Hire me</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span>
-      </button>
-    </div>
-  </div>
+  <a href="#" class="nav-logo">pratham<span>.</span></a>
+  <ul class="nav-links" id="navList">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="hamburger" aria-label="Menu"><span></span><span></span></button>
 </nav>
 
-<!-- HERO — BMW M4 COMPETITION VIDEO -->
-<section id="hero" class="hero">
-  <div class="hero-video-wrap">
-    <video class="hero-video" id="heroVideo" muted playsinline preload="auto">
-      <source src="https://cdn.pixabay.com/video/2025/02/22/260336_large.mp4" type="video/mp4"/>
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content-wrap">
-      <h1 class="hero-name" data-parallax="0.3">
-        <span class="hero-sub-text">Developer · Creator · Mumbai</span>
-        <div class="split-text" id="heroSplit">Pratham Pingle</div>
-      </h1>
-      <p class="hero-tagline" data-parallax="0.5">IT Student · Flutter Dev · Web Developer</p>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">
+      <span class="dot-pulse"></span>
+      <span>Available for opportunities</span>
     </div>
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="line"></div>
+    <h1 class="hero-title">
+      <span class="line reveal"><span class="word">I build</span></span>
+      <span class="line reveal"><span class="word">digital</span></span>
+      <span class="line reveal"><span class="word accent">experiences.</span></span>
+    </h1>
+    <div class="hero-bottom reveal">
+      <p class="hero-desc">Flutter & Web Developer<br/>based in Mumbai, India</p>
+      <a href="#work" class="hero-cta">
+        <span>See my work</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap"><div class="marquee-track"><span>WEB DEVELOPER</span><span>✦</span><span>FLUTTER DEV</span><span>✦</span><span>UI DESIGNER</span><span>✦</span><span>PROBLEM SOLVER</span><span>✦</span><span>WEB DEVELOPER</span><span>✦</span><span>FLUTTER DEV</span><span>✦</span><span>UI DESIGNER</span><span>✦</span><span>PROBLEM SOLVER</span><span>✦</span></div></div>
+<!-- TAPE MARQUEE -->
+<div class="tape">
+  <div class="tape-track">
+    <span>WEB DEVELOPER</span><span>★</span><span>FLUTTER DEV</span><span>★</span><span>UI DESIGNER</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span><span>WEB DEVELOPER</span><span>★</span><span>FLUTTER DEV</span><span>★</span><span>UI DESIGNER</span><span>★</span><span>PROBLEM SOLVER</span><span>★</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">Selected Work</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="projects">
+      <a href="https://my-pins-final-main.vercel.app/" target="_blank" class="project reveal">
+        <div class="project-info">
+          <span class="project-num">01</span>
+          <h3>MYpins</h3>
+          <p>Pinterest-style web app with image upload, explore feed, and full user authentication — Node.js backend.</p>
+          <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span></div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+      <a href="https://lockin-app-ten.vercel.app/" target="_blank" class="project reveal">
+        <div class="project-info">
+          <span class="project-num">02</span>
+          <h3>LockIn</h3>
+          <p>Productivity app to stay focused, organize daily priorities, and build consistency with a distraction-free experience.</p>
+          <div class="project-tags"><span>Web App</span><span>Productivity</span><span>UI/UX</span><span>Vercel</span></div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+      <a href="https://predictive-maintenance-api.vercel.app/ui/" target="_blank" class="project reveal">
+        <div class="project-info">
+          <span class="project-num">03</span>
+          <h3>Predictive Maintenance API</h3>
+          <p>Browsable API interface for predictive maintenance workflows — inspect endpoints, test payloads, review responses.</p>
+          <div class="project-tags"><span>API UI</span><span>Docs</span><span>Analytics</span><span>Vercel</span></div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+      <a href="https://github.com/pratham092006/Classmrgr" target="_blank" class="project reveal">
+        <div class="project-info">
+          <span class="project-num">04</span>
+          <h3>ClassMgr</h3>
+          <p>Flutter mobile app for teachers to check room availability and book classrooms for lectures and events in real time.</p>
+          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>Backend API</span><span>Database</span></div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
-<section id="about" class="section">
+<section class="section section-dark" id="about">
   <div class="container">
-    <span class="section-tag">About</span>
-    <div class="about-single">
-      <h2 class="section-heading">Building things that <em>matter</em>.</h2>
-      <p>I'm <strong>Pratham Pingle</strong>, an IT student from Mumbai passionate about creating clean, functional digital experiences — from responsive web apps to cross-platform mobile apps with Flutter.</p>
-      <p>I've had hands-on internship experience at Riamona Luxury & Fashion Brands, where I built and shipped a full Flutter mobile application. Outside of code, you'll find me volunteering at Malhar and other college fests.</p>
-      <div class="about-chips">
-        <span>Mumbai, India 📍</span>
-        <span>St. Xavier's College 🎓</span>
-        <span>Open to Internships ✦</span>
-      </div>
+    <div class="section-head reveal">
+      <span class="label">About</span>
+      <h2 class="section-title">A bit about me</h2>
     </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section section-alt">
-  <div class="container">
-    <span class="section-tag">Skills</span>
-    <h2 class="section-heading">Technical toolkit.</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>Languages</h3>
-        <div class="skill-bars">
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>HTML &amp; CSS</span><span>90%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm <strong>Pratham Pingle</strong>, an IT student at St. Xavier's College, Mumbai. I build clean, functional digital experiences — from responsive web apps to cross-platform mobile apps with Flutter.</p>
+        <p>I've interned at <strong>Riamona Luxury & Fashion Brands</strong>, where I shipped a full Flutter mobile app. Outside of code, I volunteer at Malhar and other college fests.</p>
+      </div>
+      <div class="about-details reveal">
+        <div class="detail-block">
+          <h4>Experience</h4>
+          <div class="detail-item"><span>Flutter Dev Intern</span><span class="dim">Riamona · 2026</span></div>
+          <div class="detail-item"><span>Technical Volunteer</span><span class="dim">Malhar · 2024–25</span></div>
+        </div>
+        <div class="detail-block">
+          <h4>Stack</h4>
+          <div class="stack-pills">
+            <span>Flutter</span><span>Dart</span><span>JavaScript</span><span>Python</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>SQL</span><span>Git</span><span>Firebase</span><span>Figma</span>
           </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>JavaScript</span><span>80%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>Python</span><span>70%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>Java</span><span>55%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="55"></div></div>
-          </div>
+        </div>
+        <div class="detail-block">
+          <h4>Certifications</h4>
+          <div class="detail-item"><span>GenAI Powered Data Analytics</span><span class="dim">Job Simulation</span></div>
+          <div class="detail-item"><span>MS-CIT</span><span class="dim">Maharashtra State</span></div>
         </div>
       </div>
-      <div class="skill-group">
-        <h3>Frameworks &amp; Tools</h3>
-        <div class="skill-bars">
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>Flutter / Dart</span><span>75%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>Node.js</span><span>70%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>Git &amp; GitHub</span><span>78%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-label"><span>SQL</span><span>65%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="skill-group skill-tags-group">
-        <h3>Other</h3>
-        <div class="pill-list">
-          <span>REST APIs</span><span>Responsive Design</span><span>UI Design</span>
-          <span>Data Analysis</span><span>Problem Solving</span><span>Algorithmic Thinking</span>
-          <span>Team Collaboration</span><span>Communication</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section">
-  <div class="container">
-    <span class="section-tag">Projects</span>
-    <h2 class="section-heading">Things I've built.</h2>
-    <div class="projects-grid">
-      <article class="project-card">
-        <div class="project-top"><span class="project-type">Web Application</span><span class="project-year">2025</span></div>
-        <h3>MYpins</h3>
-        <p class="project-sub">Pinterest Clone</p>
-        <p class="project-desc">A responsive Pinterest-style web app with image upload, explore feed, and full user authentication — built with a Node.js backend.</p>
-        <ul class="project-features"><li>Image upload &amp; explore feed</li><li>User authentication &amp; sessions</li><li>Responsive masonry layout</li></ul>
-        <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span></div>
-        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
-          <a href="https://my-pins-final-main.vercel.app/" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>My Pins</a>
-          <a href="https://github.com/pratham092006/MYpins" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>GitHub Repo</a>
-        </div>
-      </article>
-      <article class="project-card">
-        <div class="project-top"><span class="project-type">Web Application</span><span class="project-year">2026</span></div>
-        <h3>LockIn</h3>
-        <p class="project-sub">Focus and productivity app</p>
-        <p class="project-desc">LockIn is a productivity web app designed to help users stay focused, organize daily priorities, and build consistency with a simple, distraction-free experience.</p>
-        <ul class="project-features"><li>Task-focused daily workflow</li><li>Clean UI for distraction-free planning</li><li>Progress tracking for consistency</li></ul>
-        <div class="project-tech"><span>Web App</span><span>Productivity</span><span>UI/UX</span><span>Vercel</span></div>
-        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
-          <a href="https://lockin-app-ten.vercel.app/" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>LockIn App</a>
-          <a href="https://github.com/pratham092006/lockin-app" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>GitHub Repo</a>
-        </div>
-      </article>
-      <article class="project-card">
-        <div class="project-top"><span class="project-type">Web Application</span><span class="project-year">2026</span></div>
-        <h3>Predictive Maintenance API</h3>
-        <p class="project-sub">Interactive API documentation UI</p>
-        <p class="project-desc">A browsable API interface for predictive maintenance workflows, where users can inspect endpoints, test request payloads, and review model-driven maintenance responses.</p>
-        <ul class="project-features"><li>Interactive endpoint testing</li><li>Clear request and response schema visibility</li><li>Supports predictive maintenance use cases</li></ul>
-        <div class="project-tech"><span>API UI</span><span>Docs</span><span>Predictive Analytics</span><span>Vercel</span></div>
-        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
-          <a href="https://predictive-maintenance-api.vercel.app/ui/" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live UI</a>
-          <a href="https://github.com/pratham092006/Predective-maintenance" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>GitHub Repo</a>
-        </div>
-      </article>
-      <article class="project-card">
-        <div class="project-top"><span class="project-type">Mobile Application</span><span class="project-year">2025</span></div>
-        <h3>ClassMgr</h3>
-        <p class="project-sub">Classroom Management App</p>
-        <p class="project-desc">A Flutter mobile app for teachers to check room availability and book classrooms for lectures and events in real time.</p>
-        <ul class="project-features"><li>Real-time room availability</li><li>Booking &amp; scheduling system</li><li>Backend API integration</li></ul>
-        <div class="project-tech"><span>Flutter</span><span>Dart</span><span>Backend API</span><span>Database</span></div>
-        <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
-          <a href="https://github.com/pratham092006/Classmrgr" target="_blank" class="social-link" style="gap:6px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>GitHub Repo</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="section section-alt">
-  <div class="container">
-    <span class="section-tag">Experience</span>
-    <h2 class="section-heading">My journey.</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-left"><span class="tl-date">Feb – Mar 2026</span><span class="tl-badge badge-work">Internship</span></div>
-        <div class="tl-line"><div class="tl-dot"></div></div>
-        <div class="tl-right">
-          <h3>Flutter App Developer Intern</h3>
-          <p class="tl-org">Riamona Luxury and Fashion Brands Pvt. Ltd.</p>
-          <ul><li>Built a full-stack mobile application using Flutter during internship</li><li>Developed UI components, navigation, and app features using Flutter widgets</li><li>Integrated backend APIs for data handling and functionality</li><li>Improved UI responsiveness; assisted with debugging and testing</li></ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-left"><span class="tl-date">Pursuing</span><span class="tl-badge badge-edu">Education</span></div>
-        <div class="tl-line"><div class="tl-dot"></div></div>
-        <div class="tl-right">
-          <h3>B.Sc. Information Technology</h3>
-          <p class="tl-org">St. Xavier's College, Mumbai</p>
-          <ul><li>Data Structures &amp; Algorithms</li><li>Database Management Systems</li><li>Web Technologies &amp; Software Engineering</li><li>Data Analytics</li></ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-left"><span class="tl-date">2024 – 2025</span><span class="tl-badge badge-vol">Volunteer</span></div>
-        <div class="tl-line"><div class="tl-dot"></div></div>
-        <div class="tl-right">
-          <h3>Technical Team Member</h3>
-          <p class="tl-org">College Events — St. Xavier's College</p>
-          <ul><li>Malhar Festival 2024 &amp; 2025 — Technical Volunteer</li><li>Hvam 2025 — Technical Member</li><li>Anatas 2025 — Technical Member</li><li>TFS 2025 — Technical Member</li></ul>
-        </div>
-      </div>
-    </div>
-    <div class="certs">
-      <h3 class="certs-heading">Certifications</h3>
-      <div class="certs-row">
-        <div class="cert-item"><div class="cert-icon">🤖</div><div><p class="cert-name">GenAI Powered Data Analytics</p><p class="cert-sub">Job Simulation Certificate</p></div></div>
-        <div class="cert-item"><div class="cert-icon">💻</div><div><p class="cert-name">MS-CIT</p><p class="cert-sub">Maharashtra State Computer Literacy</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section id="tech" class="section">
-  <div class="container">
-    <span class="section-tag">Tech Stack</span>
-    <h2 class="section-heading">Tools I work with.</h2>
-    <div class="tech-grid">
-      <div class="tech-category"><h4>Languages</h4><div class="tech-badges"><span class="tech-badge">HTML5</span><span class="tech-badge">CSS3</span><span class="tech-badge">JavaScript</span><span class="tech-badge">Python</span><span class="tech-badge">Java</span><span class="tech-badge">Dart</span></div></div>
-      <div class="tech-category"><h4>Frontend</h4><div class="tech-badges"><span class="tech-badge">React</span><span class="tech-badge">Flutter</span><span class="tech-badge">Responsive Design</span><span class="tech-badge">CSS Animations</span><span class="tech-badge">Figma</span></div></div>
-      <div class="tech-category"><h4>Backend & Tools</h4><div class="tech-badges"><span class="tech-badge">Node.js</span><span class="tech-badge">Express.js</span><span class="tech-badge">MongoDB</span><span class="tech-badge">SQL</span><span class="tech-badge">Firebase</span><span class="tech-badge">Git</span></div></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section section-alt">
+<section class="section" id="contact">
   <div class="container">
-    <span class="section-tag">Contact</span>
-    <h2 class="section-heading">Let's work together.</h2>
-    <p class="contact-sub">Open to internships, freelance work, and exciting ideas. Fill in the form and I'll reply ASAP — usually within 24 hours.</p>
-    <div class="contact-layout">
+    <div class="contact-block reveal">
+      <span class="label">Get in touch</span>
+      <h2 class="contact-title">Let's build<br/>something <em>great</em>.</h2>
       <div class="contact-links">
-        <h3 class="contact-links-heading">Let's connect<br/>and work together.</h3>
-        <p class="contact-links-sub">Usually reply within 24 hours.</p>
-        <a href="https://mail.google.com/mail/?view=cm&to=Pinglepratham618@gmail.com" target="_blank" class="contact-link-item">
-          <div class="cli-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></div>
-          <div><span class="cli-label">Email</span><span class="cli-value">Pinglepratham618@gmail.com</span></div>
-          <svg class="cli-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <a href="https://mail.google.com/mail/?view=cm&to=Pinglepratham618@gmail.com" target="_blank" class="contact-link">
+          <span class="cl-name">Email</span>
+          <span class="cl-value">Pinglepratham618@gmail.com</span>
+          <span class="cl-arrow">↗</span>
         </a>
-        <a href="https://www.linkedin.com/in/pratham-pingle-71a977318/" target="_blank" class="contact-link-item">
-          <div class="cli-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-          <div><span class="cli-label">LinkedIn</span><span class="cli-value">linkedin.com/in/pratham-pingle...</span></div>
-          <svg class="cli-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <a href="https://www.linkedin.com/in/pratham-pingle-71a977318/" target="_blank" class="contact-link">
+          <span class="cl-name">LinkedIn</span>
+          <span class="cl-value">pratham-pingle</span>
+          <span class="cl-arrow">↗</span>
         </a>
-        <a href="tel:+918928849217" class="contact-link-item">
-          <div class="cli-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
-          <div><span class="cli-label">Phone</span><span class="cli-value">+91 89288 49217</span></div>
-          <svg class="cli-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        <a href="tel:+918928849217" class="contact-link">
+          <span class="cl-name">Phone</span>
+          <span class="cl-value">+91 89288 49217</span>
+          <span class="cl-arrow">↗</span>
+        </a>
+        <a href="https://github.com/pratham092006" target="_blank" class="contact-link">
+          <span class="cl-name">GitHub</span>
+          <span class="cl-value">pratham092006</span>
+          <span class="cl-arrow">↗</span>
         </a>
       </div>
-      <form class="contact-form" id="contactForm">
-        <div class="form-row">
-          <div class="form-field"><label for="fname">Name</label><input type="text" id="fname" name="name" placeholder="Your name" required/></div>
-          <div class="form-field"><label for="femail">Email</label><input type="email" id="femail" name="email" placeholder="your@email.com" required/></div>
-        </div>
-        <div class="form-field"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea></div>
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <span id="submitText">Send message</span>
-          <svg id="submitIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-        </button>
-        <p class="form-note" id="formNote"></p>
-      </form>
     </div>
   </div>
 </section>
@@ -305,13 +179,8 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container footer-inner">
-    <span class="footer-name">Pratham Pingle<span class="dot-accent">.</span></span>
-    <span class="footer-copy">Crafted in Mumbai &middot; 2026</span>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/pratham-pingle-71a977318/" target="_blank">LinkedIn</a>
-      <a href="https://mail.google.com/mail/?view=cm&to=Pinglepratham618@gmail.com" target="_blank">Gmail</a>
-      <a href="tel:+918928849217">Phone</a>
-    </div>
+    <span>© 2026 Pratham Pingle</span>
+    <span>Crafted in Mumbai</span>
   </div>
 </footer>
 
