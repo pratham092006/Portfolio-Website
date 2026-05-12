@@ -182,12 +182,30 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
   .nav-links a { font-size: 3rem; }
   .nav-toggle { display: flex; z-index: 9999; }
   
-  .hero-bottom { flex-direction: column; gap: 32px; align-items: center; text-align: center; padding: 0 24px; }
+  .hero-bottom { flex-direction: column; gap: 24px; align-items: center; text-align: center; padding: 0 24px 24px; }
   .container { padding: 0 24px; }
   .cursor { display: none; }
   .tape-wrapper { height: 100px; }
   .contact-link { justify-content: center; text-align: center; }
   .cl-name { width: 100%; text-align: center; }
-  .pop-badge-container { width: 100px; height: 100px; right: 0; top: -30px; }
-  .pop-badge-center { font-size: 2rem; }
+  
+  /* Mobile Hero Optimizations */
+  .hero-interactive-content { margin-top: 0; }
+  .kinetic-text .line1 { font-size: clamp(3rem, 15vw, 4rem); }
+  .kinetic-text .line2 { font-size: clamp(2.5rem, 15vw, 4rem); text-shadow: 4px 4px 0 #000; -webkit-text-stroke: 2px #000; line-height: 0.9; }
+  .kinetic-text .line3 { font-size: clamp(1rem, 6vw, 2rem); margin-top: 15px; -webkit-text-stroke: 1px #000; }
+  
+  .pop-badge-container-inner { width: 90px; height: 90px; }
+  .pop-badge-center { font-size: 1.5rem; }
+  .el-5 { top: 10px; right: 10px; }
+  
+  /* Hide some floating clutter to keep mobile clean */
+  .el-1, .el-3 { display: none; }
+  .el-2 { bottom: 15%; left: 5%; font-size: 1rem; padding: 8px 16px; }
+  .el-4 { bottom: 20%; right: 5%; font-size: 1rem; padding: 8px 16px; }
+  
+  /* Scale down the 3D depth to prevent side-scrolling on tiny screens */
+  .kinetic-text:hover .line1 { transform: translateZ(20px); text-shadow: 4px 4px 0 #000; }
+  .kinetic-text:hover .line2 { transform: translateZ(40px); text-shadow: 6px 6px 0 #000; }
+  .kinetic-text:hover .line3 { transform: translateZ(60px); }
 }
