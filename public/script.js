@@ -1,47 +1,33 @@
-/* ============================================================
-   PRATHAM PINGLE — PORTFOLIO SCRIPT
-   Cursor · Particles · Typewriter · Scroll Animations · Form
-   ============================================================ */
-
 'use strict';
 
 /* ── CURSOR ──────────────────────────────────────────────── */
 const cursorDot = document.getElementById('cursorDot');
-let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-
 document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursorDot.style.left = mx + 'px';
-  cursorDot.style.top  = my + 'px';
+  cursorDot.style.left = e.clientX + 'px';
+  cursorDot.style.top = e.clientY + 'px';
 });
-
-document.querySelectorAll('a, button, input, textarea, .pill-list span, .project-card, .cert-item').forEach(el => {
+document.querySelectorAll('a, button, input, textarea, .pill-list span, .project-card, .cert-item, .tech-badge').forEach(el => {
   el.addEventListener('mouseenter', () => cursorDot.classList.add('enlarged'));
   el.addEventListener('mouseleave', () => cursorDot.classList.remove('enlarged'));
 });
 
-/* ── NAVBAR SCROLL / ACTIVE ──────────────────────────────── */
+/* ── NAV SCROLL / HIDE / ACTIVE ─────────────────────────── */
 const nav = document.getElementById('nav');
 const navLinks = document.querySelectorAll('.nav-list a');
 const allSections = document.querySelectorAll('section[id]');
-const scrollProgress = document.getElementById('scrollProgress');
+let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  
-  // Scroll Progress Bar
-  if (scrollProgress) {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrolled / maxScroll) * 100;
-    scrollProgress.style.width = progress + '%';
-  }
-
-  nav.classList.toggle('scrolled', scrolled > 20);
-
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 20);
+  // Hide nav on scroll down, show on scroll up
+  if (y > lastScroll && y > 200) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll = y;
   // Active nav link
   let current = '';
   allSections.forEach(sec => {
-    if (scrolled >= sec.offsetTop - 120) current = sec.id;
+    if (y >= sec.offsetTop - 200) current = sec.id;
   });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${current}`));
 }, { passive: true });
@@ -52,212 +38,107 @@ const navList = document.getElementById('navList');
 hamburger?.addEventListener('click', () => navList.classList.toggle('open'));
 navLinks.forEach(l => l.addEventListener('click', () => navList.classList.remove('open')));
 
-/* ── HERO CANVAS (subtle dot grid + mouse parallax) ──────── */
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-let W, H, dots = [];
+/* ── SCROLL-DRIVEN BMW VIDEO ─────────────────────────────── */
+const heroVideo = document.getElementById('heroVideo');
+const heroSection = document.getElementById('hero');
 
-function resize() {
-  W = canvas.width = canvas.offsetWidth;
-  H = canvas.height = canvas.offsetHeight;
-}
-resize();
-window.addEventListener('resize', () => { resize(); initDots(); });
-
-function initDots() {
-  dots = [];
-  const cols = Math.floor(W / 44), rows = Math.floor(H / 44);
-  for (let r = 0; r <= rows; r++) {
-    for (let c = 0; c <= cols; c++) {
-      dots.push({
-        bx: c * 44 + 22, by: r * 44 + 22,
-        x: 0, y: 0, opacity: Math.random() * 0.4 + 0.05
-      });
-    }
-  }
-}
-initDots();
-
-let heroMouseX = W / 2, heroMouseY = H / 2;
-document.querySelector('.hero')?.addEventListener('mousemove', e => {
-  const rect = canvas.getBoundingClientRect();
-  heroMouseX = e.clientX - rect.left;
-  heroMouseY = e.clientY - rect.top;
-});
-
-function drawCanvas() {
-  ctx.clearRect(0, 0, W, H);
-  const strength = 18;
-  dots.forEach(d => {
-    const dx = d.bx - heroMouseX, dy = d.by - heroMouseY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const factor = Math.max(0, 1 - dist / 220);
-    d.x = d.bx + (dx / Math.max(dist, 1)) * factor * -strength;
-    d.y = d.by + (dy / Math.max(dist, 1)) * factor * -strength;
-
-    ctx.beginPath();
-    ctx.arc(d.x, d.y, 1.5, 0, Math.PI * 2);
-    const highlight = factor > 0.3 ? 1 : d.opacity;
-    ctx.fillStyle = `rgba(37,99,235,${highlight * (factor > 0.3 ? 0.6 : 0.2)})`;
-    ctx.fill();
+if (heroVideo && heroSection) {
+  // Load video metadata
+  heroVideo.addEventListener('loadedmetadata', () => {
+    updateVideoScroll();
   });
-  requestAnimationFrame(drawCanvas);
-}
-drawCanvas();
+  // Try to play and pause immediately so the video is ready
+  heroVideo.play().then(() => heroVideo.pause()).catch(() => {});
 
-/* ── TYPEWRITER ──────────────────────────────────────────── */
-const roles = [
-  'build Web Apps.',
-  'develop Flutter Apps.',
-  'love problem solving.',
-  'explore data analytics.',
-  'design clean UIs.',
-  'volunteer at Malhar.',
-];
-let ri = 0, ci = 0, deleting = false;
-const twEl = document.getElementById('typewriter');
-
-function type() {
-  if (!twEl) return;
-  const cur = roles[ri];
-  if (deleting) {
-    twEl.textContent = cur.slice(0, --ci);
-    if (ci <= 0) { deleting = false; ri = (ri + 1) % roles.length; }
-    setTimeout(type, 55);
-  } else {
-    twEl.textContent = cur.slice(0, ++ci);
-    if (ci >= cur.length) { deleting = true; setTimeout(type, 1600); }
-    else setTimeout(type, 85);
+  function updateVideoScroll() {
+    if (!heroVideo.duration) return;
+    const rect = heroSection.getBoundingClientRect();
+    const sectionH = heroSection.offsetHeight - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, -rect.top / sectionH));
+    heroVideo.currentTime = progress * heroVideo.duration;
   }
-}
-setTimeout(type, 600);
 
-/* ── COUNTER ANIMATION ───────────────────────────────────── */
-function animateCount(el) {
-  if (el._counted) return;
-  el._counted = true;
-  const target = +el.dataset.target;
-  const dur = 1200, start = performance.now();
-  const tick = t => {
-    const p = Math.min((t - start) / dur, 1);
-    const ease = 1 - (1 - p) ** 3;
-    el.textContent = Math.round(ease * target) + '+';
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
+  window.addEventListener('scroll', updateVideoScroll, { passive: true });
 }
 
-/* ── INTERSECTION OBSERVER (fade-up + skill bars + counters) */
+/* ── SOUND TOGGLE (BMW ENGINE) ───────────────────────────── */
+const soundToggle = document.getElementById('soundToggle');
+const engineSound = document.getElementById('engineSound');
+let soundOn = false;
+
+if (soundToggle && engineSound) {
+  engineSound.volume = 0.3;
+  soundToggle.addEventListener('click', () => {
+    soundOn = !soundOn;
+    if (soundOn) {
+      engineSound.play().catch(() => {});
+      soundToggle.textContent = '🔊';
+    } else {
+      engineSound.pause();
+      soundToggle.textContent = '🔇';
+    }
+  });
+}
+
+/* ── INTERSECTION OBSERVER (fade-up + skill bars) ────────── */
 const io = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     const el = entry.target;
-
-    // Stagger index if sibling
     const siblings = el.parentElement?.children;
-    let idx = 0;
-    if (siblings) idx = [...siblings].indexOf(el);
-
+    let idx = siblings ? [...siblings].indexOf(el) : 0;
     setTimeout(() => {
       el.classList.add('visible');
-
-      // Animate skill bars inside
       el.querySelectorAll('.skill-bar-fill').forEach(bar => {
         bar.style.width = bar.dataset.width + '%';
       });
-
-      // Counters
-      el.querySelectorAll('.counter').forEach(animateCount);
     }, idx * 80);
-
     io.unobserve(el);
   });
 }, { threshold: 0.15 });
 
-// Register elements
 document.querySelectorAll(
-  '.section-heading, .about-text, .about-stats, .stat, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form'
+  '.about-single, .skill-group, .project-card, .tl-item, .cert-item, .contact-link-item, .contact-form, .tech-category, .contact-links'
 ).forEach(el => {
   el.classList.add('fade-up');
   io.observe(el);
 });
 
-/* ── 3D CARD TILT EFFECT ─────────────────────────────────── */
-document.querySelectorAll('.project-card, .cert-item').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    
-    card.classList.add('tilt-active');
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.classList.remove('tilt-active');
-    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-  });
-});
-
-/* ── HERO PARALLAX ───────────────────────────────────────── */
-const heroBlobs = document.querySelectorAll('.blob');
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  // Canvas parallax
-  if (canvas) canvas.style.transform = `translateY(${scrolled * 0.4}px)`;
-  // Blobs parallax
-  heroBlobs.forEach((blob, i) => {
-    blob.style.transform = `translateY(${scrolled * (0.2 + i * 0.15)}px)`;
-  });
-}, { passive: true });
-
-/* ── CONTACT FORM (AJAX → /api/contact) ──────────────────── */
-const form       = document.getElementById('contactForm');
-const submitBtn  = document.getElementById('submitBtn');
+/* ── CONTACT FORM ────────────────────────────────────────── */
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
 const submitText = document.getElementById('submitText');
 const submitIcon = document.getElementById('submitIcon');
-const formNote   = document.getElementById('formNote');
+const formNote = document.getElementById('formNote');
 
 form?.addEventListener('submit', async e => {
   e.preventDefault();
-  const name    = document.getElementById('fname').value.trim();
-  const email   = document.getElementById('femail').value.trim();
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
   const message = document.getElementById('fmessage').value.trim();
-
   if (!name || !email || !message) {
     formNote.textContent = 'Please fill in all fields.';
     formNote.className = 'form-note error';
     return;
   }
-
-  // Loading state
   submitBtn.disabled = true;
   submitText.textContent = 'Sending…';
   submitIcon.style.display = 'none';
   formNote.textContent = '';
   formNote.className = 'form-note';
-
   try {
-    const res  = await fetch('https://formsubmit.co/ajax/Pinglepratham618@gmail.com', {
+    const res = await fetch('https://formsubmit.co/ajax/Pinglepratham618@gmail.com', {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ name, email, message }),
     });
     const data = await res.json();
-
     if (res.ok) {
       formNote.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
       formNote.className = 'form-note success';
       form.reset();
     } else {
-      throw new Error(data.message || data.error || 'Something went wrong.');
+      throw new Error(data.message || 'Something went wrong.');
     }
   } catch (err) {
     formNote.textContent = `✗ ${err.message}`;
@@ -269,6 +150,5 @@ form?.addEventListener('submit', async e => {
   }
 });
 
-/* ── CONSOLE GREETING ────────────────────────────────────── */
-console.log('%c Pratham Pingle — Portfolio ', 'background:#5b5ef8;color:#fff;padding:8px 16px;font-size:1rem;font-weight:700;border-radius:6px;');
-console.log('%c Open to internships & collaborations!', 'color:#818cf8;font-size:0.9rem;padding:4px 0;');
+/* ── CONSOLE ─────────────────────────────────────────────── */
+console.log('%c Pratham Pingle — Portfolio ', 'background:#1e88e5;color:#fff;padding:8px 16px;font-size:1rem;font-weight:700;border-radius:6px;');
