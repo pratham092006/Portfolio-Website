@@ -36,26 +36,35 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="pop-badge-container reveal">
-        <svg class="pop-badge" viewBox="0 0 100 100">
-          <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
-          <text>
-            <textPath href="#circlePath" fill="#000" font-family="Anton" font-size="12" letter-spacing="1">
-              AVAILABLE FOR HIRE • LET'S WORK TOGETHER • 
-            </textPath>
-          </text>
-        </svg>
-        <div class="pop-badge-center">★</div>
-      </div>
+  <div class="sticker-canvas" id="stickerCanvas"></div>
+  <div class="noise-overlay"></div>
 
-      <div class="hero-main-text reveal">
-        <h1 class="hero-title">
-          <div class="hover-split" data-text="PRATHAM">PRATHAM</div>
-          <div class="hover-split stroke" data-text="UDAY">UDAY</div>
-          <div class="hover-split cyan" data-text="PINGLE">PINGLE</div>
-        </h1>
+  <div class="hero-inner" id="heroZone">
+    
+    <div class="hero-interactive-content">
+      <h1 class="kinetic-text" id="kText">
+        <span class="line1">PRATHAM</span>
+        <span class="line2">UDAY PINGLE</span>
+        <span class="line3">FLUTTER & WEB DEVELOPER</span>
+      </h1>
+      
+      <!-- Floating Parallax Elements -->
+      <div class="float-el el-1" data-speed="-20" data-rot="15">★</div>
+      <div class="float-el el-2" data-speed="30" data-rot="-10">BUILD</div>
+      <div class="float-el el-3" data-speed="-15" data-rot="25">✦</div>
+      <div class="float-el el-4" data-speed="25" data-rot="-5">CREATE</div>
+      <div class="float-el el-5" data-speed="15" data-rot="0">
+        <div class="pop-badge-container-inner">
+          <svg class="pop-badge" viewBox="0 0 100 100">
+            <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="transparent" />
+            <text>
+              <textPath href="#circlePath" fill="#000" font-family="Anton" font-size="11.5" letter-spacing="1">
+                CLICK ANYWHERE TO STAMP • 
+              </textPath>
+            </text>
+          </svg>
+          <div class="pop-badge-center">👇</div>
+        </div>
       </div>
     </div>
     
