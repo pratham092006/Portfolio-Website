@@ -12,13 +12,16 @@
 </head>
 <body>
 
+<!-- LOADER -->
+<div class="loader" id="loader"><div class="loader-inner"><div class="loader-line"></div><span class="loader-text">PRATHAM PINGLE</span></div></div>
+
 <!-- CURSOR DOT -->
 <div class="cursor-dot" id="cursorDot"></div>
 
 <!-- SOUND TOGGLE -->
 <button class="sound-toggle" id="soundToggle" aria-label="Toggle Sound">🔇</button>
 <audio id="engineSound" loop preload="auto">
-  <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg"/>
+  <source src="https://cdn.pixabay.com/audio/2023/10/24/audio_9242964e52.mp3" type="audio/mpeg"/>
 </audio>
 
 <!-- NAV -->
@@ -45,16 +48,16 @@
 <!-- HERO — BMW M4 COMPETITION VIDEO -->
 <section id="hero" class="hero">
   <div class="hero-video-wrap">
-    <video class="hero-video" id="heroVideo" muted playsinline preload="auto" poster="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1920&q=80">
-      <source src="https://cdn.pixabay.com/video/2024/02/10/200165-911824691_large.mp4" type="video/mp4"/>
+    <video class="hero-video" id="heroVideo" muted playsinline preload="auto">
+      <source src="https://cdn.pixabay.com/video/2025/02/22/260336_large.mp4" type="video/mp4"/>
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content-wrap">
-      <h1 class="hero-name">
-        <span>Developer &amp; BMW Enthusiast</span>
-        Pratham<br/>Pingle
+      <h1 class="hero-name" data-parallax="0.3">
+        <span class="hero-sub-text">Developer · Creator · Mumbai</span>
+        <div class="split-text" id="heroSplit">Pratham Pingle</div>
       </h1>
-      <p class="hero-tagline">IT Student · Flutter Dev · Web Developer · Mumbai, India</p>
+      <p class="hero-tagline" data-parallax="0.5">IT Student · Flutter Dev · Web Developer</p>
     </div>
     <div class="hero-scroll-hint">
       <span>Scroll</span>
@@ -62,6 +65,9 @@
     </div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap"><div class="marquee-track"><span>WEB DEVELOPER</span><span>✦</span><span>FLUTTER DEV</span><span>✦</span><span>UI DESIGNER</span><span>✦</span><span>PROBLEM SOLVER</span><span>✦</span><span>WEB DEVELOPER</span><span>✦</span><span>FLUTTER DEV</span><span>✦</span><span>UI DESIGNER</span><span>✦</span><span>PROBLEM SOLVER</span><span>✦</span></div></div>
 
 <!-- ABOUT -->
 <section id="about" class="section">
@@ -75,7 +81,6 @@
         <span>Mumbai, India 📍</span>
         <span>St. Xavier's College 🎓</span>
         <span>Open to Internships ✦</span>
-        <span>BMW Enthusiast 🏎️</span>
       </div>
     </div>
   </div>
