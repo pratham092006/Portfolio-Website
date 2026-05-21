@@ -35,8 +35,14 @@ document.querySelectorAll('a, button, .project, .stack-pills span, .contact-link
 /* ── NAV ─────────────────────────────────────────────────── */
 const hamburger = document.getElementById('hamburger');
 const navList = document.getElementById('navList');
-hamburger?.addEventListener('click', () => navList?.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navList?.classList.remove('open')));
+hamburger?.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navList?.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
+  hamburger?.classList.remove('open');
+  navList?.classList.remove('open');
+}));
 
 /* ── SCROLL REVEAL ───────────────────────────────────────── */
 const reveals = document.querySelectorAll('.reveal');
@@ -50,7 +56,11 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 
 reveals.forEach((el, i) => { 
-  el.style.transitionDelay = `${(i % 5) * 0.1}s`; 
+  if (window.innerWidth > 768) {
+    el.style.transitionDelay = `${(i % 5) * 0.1}s`; 
+  } else {
+    el.style.transitionDelay = '0s';
+  }
   io.observe(el); 
 });
 
