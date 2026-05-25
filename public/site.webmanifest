@@ -1,0 +1,17 @@
+{
+  "name": "Pratham Uday Pingle Portfolio",
+  "short_name": "Pratham Pingle",
+  "description": "Portfolio of Pratham Uday Pingle, Flutter app developer and web developer from Mumbai.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f3ed",
+  "theme_color": "#00ccff",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "360x360",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
