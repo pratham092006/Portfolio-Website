@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolioprathamweb.netlify.app/sitemap.xml
+Sitemap: https://www.prathamcodes.social/sitemap.xml
