@@ -280,6 +280,7 @@ if (termHeader && termWindow) {
   termMin?.addEventListener('click', () => {
     termWindow.classList.toggle('minimized');
     if (termWindow.classList.contains('minimized')) {
+      termWindow.classList.remove('maximized');
       termMin.textContent = '+';
     } else {
       termMin.textContent = '−';
@@ -289,6 +290,8 @@ if (termHeader && termWindow) {
   termMax?.addEventListener('click', () => {
     termWindow.classList.toggle('maximized');
     if (termWindow.classList.contains('maximized')) {
+      termWindow.classList.remove('minimized');
+      termMin.textContent = '−';
       termWindow.style.transform = '';
       translateX = 0;
       translateY = 0;

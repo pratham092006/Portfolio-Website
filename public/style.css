@@ -364,6 +364,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
   left: 5vw !important;
   top: 10vh !important;
   right: auto !important;
+  bottom: auto !important;
 }
 .terminal-header {
   background: #222;
