@@ -106,38 +106,31 @@
   <div class="hero-inner" id="heroZone">
     
     <div class="hero-interactive-content">
-      <!-- Grid layout to prevent overlaps on desktop -->
-      <div class="hero-grid">
-        <div class="hero-text-side">
-          <h1 class="kinetic-text" id="kText">
-            <span class="line1">PRATHAM</span>
-            <span class="line2">UDAY PINGLE</span>
-            <span class="line3">FLUTTER & WEB DEVELOPER</span>
-          </h1>
+      <h1 class="kinetic-text" id="kText">
+        <span class="line1">PRATHAM</span>
+        <span class="line2">UDAY PINGLE</span>
+        <span class="line3">FLUTTER & WEB DEVELOPER</span>
+      </h1>
+
+      <!-- PrathamOS Terminal Widget -->
+      <div class="terminal-window" id="terminalWindow">
+        <div class="terminal-header" id="terminalHeader">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">pratham@portfolio: ~</span>
+          <div class="terminal-actions">
+            <button class="terminal-btn min" id="terminalMin">−</button>
+            <button class="terminal-btn max" id="terminalMax">⤢</button>
+          </div>
         </div>
-        
-        <div class="hero-widget-side">
-          <!-- PrathamOS Terminal Widget -->
-          <div class="terminal-window" id="terminalWindow">
-            <div class="terminal-header" id="terminalHeader">
-              <div class="terminal-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-              </div>
-              <span class="terminal-title">pratham@portfolio: ~</span>
-              <div class="terminal-actions">
-                <button class="terminal-btn min" id="terminalMin">−</button>
-                <button class="terminal-btn max" id="terminalMax">⤢</button>
-              </div>
-            </div>
-            <div class="terminal-body" id="terminalBody">
-              <div class="terminal-output" id="terminalOutput"></div>
-              <div class="terminal-input-line">
-                <span class="prompt">pratham:~$</span>
-                <input type="text" id="terminalInput" autocomplete="off" placeholder="type 'help'..."/>
-              </div>
-            </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="terminal-output" id="terminalOutput"></div>
+          <div class="terminal-input-line">
+            <span class="prompt">pratham:~$</span>
+            <input type="text" id="terminalInput" autocomplete="off" placeholder="type 'help'..."/>
           </div>
         </div>
       </div>

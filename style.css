@@ -330,42 +330,15 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
   transform: scaleX(0);
 }
 
-/* ── HERO GRID ── */
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 40px;
-  width: 100%;
-  max-width: 1400px;
-  align-items: center;
-  justify-items: center;
-  z-index: 10;
-  padding: 0 48px;
-}
-.hero-text-side {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero-widget-side {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.hero-text-side .kinetic-text {
-  text-align: left;
-}
-
 /* ── PRATHAMOS TERMINAL WIDGET ── */
 .terminal-window {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  height: 330px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  top: auto;
+  left: auto;
+  width: 400px;
+  height: 280px;
   background: #111;
   border: 3px solid #000;
   box-shadow: 8px 8px 0 #000;
@@ -632,17 +605,6 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 
 /* Tablet & Mobile Layout Changes */
 @media(max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 24px;
-  }
-  .hero-text-side .kinetic-text {
-    text-align: center;
-  }
-  .hero-widget-side {
-    display: none;
-  }
   .terminal-window {
     display: none; /* Hide draggable desktop console widget on mobile/tablet */
   }
