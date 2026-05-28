@@ -298,19 +298,18 @@ if (termHeader && termWindow) {
   });
 }
 
-
 /* ── TERMINAL LOGIC & CMDS ───────────────────────────────── */
 const commandHistory = [];
 let historyIndex = -1;
 
 const bioDescription = 
-`Pratham Uday Pingle — Flutter App Developer & Web Developer based in Mumbai.
-Currently pursuing B.Sc. Information Technology at St. Xavier's College, Mumbai.
+`Pratham Uday Pingle — Flutter & Web Dev
+Pursuing B.Sc. IT at St. Xavier's, Mumbai.
 
 Type:
-  'skills'   to display technical skills chart.
-  'projects' to output my major projects.
-  'contact'  to view how to reach me.`;
+  'skills'   - tech stack status
+  'projects' - list of main works
+  'contact'  - get in touch details`;
 
 const skillsData = [
   { name: "Flutter/Dart", level: 90, bar: "█████████░" },
@@ -322,10 +321,10 @@ const skillsData = [
 ];
 
 const projectsData = [
-  { name: "MYPINS", desc: "Pinterest-style masonry visual bookmarks", link: "https://my-pins-final-main.vercel.app" },
+  { name: "MYPINS", desc: "Pinterest masonry visual bookmarks", link: "https://my-pins-final-main.vercel.app" },
   { name: "LOCKIN", desc: "Full-stack habit & fitness dashboard", link: "https://lockin-app-ten.vercel.app" },
-  { name: "CLASSMGR", desc: "Flutter classroom management booking client", link: "https://github.com/pratham092006/Classmrgr" },
-  { name: "PREDICTIVE API", desc: "Data maintenance health scoring check API", link: "https://predictive-maintenance-api.vercel.app" }
+  { name: "CLASSMGR", desc: "Flutter room booking client", link: "https://github.com/pratham092006/Classmrgr" },
+  { name: "PREDICTIVE API", desc: "Predictive maintenance checking API", link: "https://predictive-maintenance-api.vercel.app" }
 ];
 
 const themesList = ['matrix', 'cyberpunk', 'sunset', 'default'];
@@ -344,9 +343,9 @@ function printLine(text, type = '') {
 function bootTerminal() {
   if (!termOutput) return;
   termOutput.innerHTML = ''; 
-  printLine("PrathamOS v1.0.2 [System booted successfully]", "system");
-  printLine("Type 'help' to view available interactive commands.", "success");
-  printLine("--------------------------------------------------", "system");
+  printLine("PrathamOS v1.0.2 booted successfully", "system");
+  printLine("Type 'help' for command options.", "success");
+  printLine("------------------------------------", "system");
 }
 
 bootTerminal();
