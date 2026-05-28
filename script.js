@@ -236,7 +236,9 @@ const termOutput = document.getElementById('terminalOutput');
 const termBody = document.getElementById('terminalBody');
 
 let isDragging = false;
-let startX, startY, initialLeft, initialTop;
+let startX, startY;
+let translateX = 0, translateY = 0;
+let initialTranslateX = 0, initialTranslateY = 0;
 
 if (termHeader && termWindow) {
   termHeader.addEventListener('mousedown', (e) => {
@@ -249,11 +251,8 @@ if (termHeader && termWindow) {
     startX = e.clientX;
     startY = e.clientY;
     
-    const rect = termWindow.getBoundingClientRect();
-    const parentRect = homePage.getBoundingClientRect();
-    
-    initialLeft = rect.left - parentRect.left;
-    initialTop = rect.top - parentRect.top;
+    initialTranslateX = translateX;
+    initialTranslateY = translateY;
     
     document.addEventListener('mousemove', dragMove);
     document.addEventListener('mouseup', dragEnd);
@@ -265,22 +264,10 @@ if (termHeader && termWindow) {
     const dx = e.clientX - startX;
     const dy = e.clientY - startY;
     
-    let nextLeft = initialLeft + dx;
-    let nextTop = initialTop + dy;
+    translateX = initialTranslateX + dx;
+    translateY = initialTranslateY + dy;
     
-    const parentWidth = homePage.clientWidth;
-    const parentHeight = homePage.clientHeight;
-    const width = termWindow.clientWidth;
-    const height = termWindow.clientHeight;
-    
-    if (nextLeft < 0) nextLeft = 0;
-    if (nextTop < 0) nextTop = 0;
-    if (nextLeft + width > parentWidth) nextLeft = parentWidth - width;
-    if (nextTop + height > parentHeight) nextTop = parentHeight - height;
-    
-    termWindow.style.left = `${nextLeft}px`;
-    termWindow.style.top = `${nextTop}px`;
-    termWindow.style.right = 'auto'; 
+    termWindow.style.transform = `translate(${translateX}px, ${translateY}px)`;
   }
   
   function dragEnd() {
@@ -301,6 +288,13 @@ if (termHeader && termWindow) {
   
   termMax?.addEventListener('click', () => {
     termWindow.classList.toggle('maximized');
+    if (termWindow.classList.contains('maximized')) {
+      termWindow.style.transform = '';
+      translateX = 0;
+      translateY = 0;
+    } else {
+      termWindow.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    }
   });
 }
 
