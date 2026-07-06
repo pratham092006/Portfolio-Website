@@ -330,6 +330,8 @@ const projectsData = [
   { name: "PREDICTIVE API", desc: "Predictive maintenance checking API", link: "https://predictive-maintenance-api.vercel.app" }
 ];
 
+const contactEndpoint = 'https://formsubmit.co/ajax/Pinglepratham618@gmail.com';
+
 const themesList = ['matrix', 'cyberpunk', 'sunset', 'default'];
 let activeThemeIndex = 3; 
 
@@ -352,6 +354,62 @@ function bootTerminal() {
 }
 
 bootTerminal();
+
+const contactForm = document.getElementById('ajaxContactForm');
+const formSubmitBtn = document.getElementById('formSubmitBtn');
+const formStatus = document.getElementById('formStatus');
+
+contactForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  if (!formSubmitBtn || !formStatus) return;
+
+  const btnTextEl = formSubmitBtn.querySelector('span');
+  const formData = new FormData(contactForm);
+  const name = String(formData.get('name') || '').trim();
+  const email = String(formData.get('email') || '').trim();
+  const message = String(formData.get('message') || '').trim();
+
+  formSubmitBtn.disabled = true;
+  if (btnTextEl) btnTextEl.textContent = 'SENDING...';
+  formStatus.textContent = '';
+  formStatus.className = 'form-status';
+
+  try {
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('email', email);
+    payload.append('message', message);
+    payload.append('_subject', `New portfolio message from ${name}`);
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'false');
+
+    const response = await fetch(contactEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: payload,
+    });
+
+    const result = await response.json().catch(() => null);
+
+    if (!response.ok) {
+      throw new Error(result?.message || 'Unable to send message right now.');
+    }
+
+    contactForm.reset();
+    formStatus.textContent = 'Success! Message sent. I will get back to you soon.';
+    formStatus.classList.add('success');
+  } catch (error) {
+    formStatus.textContent = 'Could not send the message right now. Please email me directly at Pinglepratham618@gmail.com.';
+    formStatus.classList.add('error');
+    console.error('Contact form error:', error);
+  } finally {
+    formSubmitBtn.disabled = false;
+    if (btnTextEl) btnTextEl.textContent = 'SEND MESSAGE';
+  }
+});
 
 termInput?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
@@ -428,57 +486,3 @@ termInput?.addEventListener('keydown', (e) => {
 });
 
 termBody?.addEventListener('click', () => termInput?.focus());
-
-
-/* ── Nodemailer AJAX Contact Form ───────────────────────── */
-const contactForm = document.getElementById('ajaxContactForm');
-const formSubmitBtn = document.getElementById('formSubmitBtn');
-const formStatus = document.getElementById('formStatus');
-
-contactForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  if (!formSubmitBtn || !formStatus) return;
-
-  const btnTextEl = formSubmitBtn.querySelector('span');
-  const originalBtnText = btnTextEl ? btnTextEl.textContent : "SEND MESSAGE";
-
-  try {
-    formSubmitBtn.disabled = true;
-    if (btnTextEl) btnTextEl.textContent = "SENDING...";
-    formStatus.textContent = '';
-    formStatus.className = 'form-status';
-
-    const formData = {
-      name: document.getElementById('formName').value.trim(),
-      email: document.getElementById('formEmail').value.trim(),
-      message: document.getElementById('formMessage').value.trim()
-    };
-
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await response.json();
-
-    if (response.ok && result.success) {
-      formStatus.textContent = "Success! Message sent successfully. Check your email inbox! 👋";
-      formStatus.classList.add('success');
-      contactForm.reset();
-    } else {
-      formStatus.textContent = result.error || "Failed to send message. Please email me directly instead!";
-      formStatus.classList.add('error');
-    }
-  } catch (error) {
-    console.error("AJAX submit error:", error);
-    formStatus.textContent = "Failed to reach server. Please email me directly instead!";
-    formStatus.classList.add('error');
-  } finally {
-    formSubmitBtn.disabled = false;
-    if (btnTextEl) btnTextEl.textContent = originalBtnText;
-    initCursorHoverEvents();
-  }
-});
