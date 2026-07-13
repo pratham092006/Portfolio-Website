@@ -135,10 +135,12 @@ const stickers = [
 ];
 
 if (homePage && kText) {
-  homePage.addEventListener('mousemove', (e) => {
+  let isTouching = false;
+
+  function handleMove(clientX, clientY) {
     const { width, height, left, top } = homePage.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
+    const x = clientX - left;
+    const y = clientY - top;
     
     const xWalk = ((x / width) - 0.5) * 30;
     const yWalk = ((y / height) - 0.5) * -30;
@@ -153,15 +155,112 @@ if (homePage && kText) {
       
       el.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${baseRot}deg)`;
     });
-  });
-  
-  homePage.addEventListener('mouseleave', () => {
+  }
+
+  function handleReset() {
     kText.style.transform = `rotateY(0deg) rotateX(0deg)`;
     floatEls.forEach((el) => {
       const baseRot = parseFloat(el.getAttribute('data-rot')) || 0;
       el.style.transform = `translate(0px, 0px) rotate(${baseRot}deg)`;
     });
+  }
+
+  homePage.addEventListener('mousemove', (e) => {
+    handleMove(e.clientX, e.clientY);
   });
+  
+  homePage.addEventListener('mouseleave', handleReset);
+
+  // Mobile Touch Support for 3D Tilt
+  homePage.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  homePage.addEventListener('touchstart', (e) => {
+    isTouching = true;
+    if (e.touches.length > 0) {
+      handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  homePage.addEventListener('touchend', () => {
+    isTouching = false;
+    handleReset();
+  });
+
+  // Mobile touch support for name hover pop-out effect
+  kText.addEventListener('touchstart', () => {
+    kText.classList.add('hover-active');
+  }, { passive: true });
+
+  kText.addEventListener('touchend', () => {
+    kText.classList.remove('hover-active');
+  });
+
+  kText.addEventListener('touchcancel', () => {
+    kText.classList.remove('hover-active');
+  });
+
+  // Gyroscope / Device Orientation Support
+  function handleOrientation(e) {
+    if (isTouching) return; // Prevent fighting with manual touch drags
+    
+    const gamma = e.gamma; // tilt left/right [-90, 90]
+    const beta = e.beta;   // tilt front/back [-180, 180]
+    
+    if (gamma === null || beta === null) return;
+    
+    // Normalize phone tilt based on standard holding angle (~55deg)
+    const targetBeta = beta - 55;
+    
+    // Constrain ranges to map to tilt max walks
+    const constrainedGamma = Math.max(-25, Math.min(25, gamma));
+    const constrainedBeta = Math.max(-25, Math.min(25, targetBeta));
+    
+    // Map to degrees
+    const xWalk = constrainedGamma;
+    const yWalk = -constrainedBeta;
+    
+    kText.style.transform = `rotateY(${xWalk}deg) rotateX(${yWalk}deg)`;
+    
+    floatEls.forEach((el) => {
+      const speed = parseFloat(el.getAttribute('data-speed')) || 10;
+      const baseRot = parseFloat(el.getAttribute('data-rot')) || 0;
+      const xOffset = (constrainedGamma / 25) * speed;
+      const yOffset = (constrainedBeta / 25) * speed;
+      
+      el.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${baseRot}deg)`;
+    });
+  }
+
+  function initGyroscope() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS 13+ requires user gesture to grant sensor permission
+      const requestGyroPermission = () => {
+        DeviceOrientationEvent.requestPermission()
+          .then((permissionState) => {
+            if (permissionState === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          })
+          .catch(console.error);
+        
+        // Cleanup interaction listeners once requested
+        document.removeEventListener('click', requestGyroPermission);
+        document.removeEventListener('touchstart', requestGyroPermission);
+      };
+      
+      document.addEventListener('click', requestGyroPermission);
+      document.addEventListener('touchstart', requestGyroPermission);
+    } else {
+      // Android / other browsers
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
+  }
+
+  initGyroscope();
 
   function spawnConfetti(x, y) {
     const colors = ['var(--lime)', 'var(--cyan)', 'var(--pink)', 'var(--yellow)', '#fff', '#000'];
