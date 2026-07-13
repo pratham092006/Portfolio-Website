@@ -233,9 +233,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
   .form-submit-btn { padding: 13px 20px; font-size: 1rem; }
 
   .kinetic-text { width: 100%; line-height: 1.15; }
-  .kinetic-text .line1 { font-size: clamp(2.5rem, 12vw, 3.5rem); line-height: 1.1; }
-  .kinetic-text .line2 { font-size: clamp(2.2rem, 12vw, 3.2rem); text-shadow: 4px 4px 0 #000; -webkit-text-stroke: 2px #000; line-height: 1.1; margin-top: 4px; }
-  .kinetic-text .line3 { font-size: clamp(1rem, 5vw, 1.3rem); margin-top: 12px; -webkit-text-stroke: 1px #000; line-height: 1.2; }
+  .kinetic-text .line1 { font-size: clamp(3.2rem, 14vw, 4.5rem); line-height: 1.05; }
+  .kinetic-text .line2 { font-size: clamp(2.8rem, 14vw, 4.2rem); text-shadow: 4px 4px 0 #000; -webkit-text-stroke: 2px #000; line-height: 1.05; margin-top: 4px; }
+  .kinetic-text .line3 { font-size: clamp(1.4rem, 6vw, 1.8rem); margin-top: 12px; -webkit-text-stroke: 1px #000; line-height: 1.2; }
   .pop-badge-container-inner { width: 76px; height: 76px; }
   .pop-badge-center { font-size: 1.15rem; }
   .el-5 { top: -15px; right: 15px; }
@@ -257,12 +257,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
   .hero-cta { font-size: 1rem; }
 
   .kinetic-text { line-height: 1.1; }
-  .kinetic-text .line1 { font-size: clamp(2.2rem, 11vw, 3rem); line-height: 1.05; }
-  .kinetic-text .line2 { font-size: clamp(2rem, 11vw, 2.8rem); text-shadow: 3px 3px 0 #000; -webkit-text-stroke: 1.5px #000; line-height: 1.05; margin-top: 2px; }
-  .kinetic-text .line3 { font-size: clamp(0.9rem, 4.8vw, 1.1rem); margin-top: 8px; line-height: 1.2; }
+  .kinetic-text .line1 { font-size: clamp(2.8rem, 13vw, 3.8rem); line-height: 1.05; }
+  .kinetic-text .line2 { font-size: clamp(2.4rem, 13vw, 3.5rem); text-shadow: 3px 3px 0 #000; -webkit-text-stroke: 1.5px #000; line-height: 1.05; margin-top: 2px; }
+  .kinetic-text .line3 { font-size: clamp(1.2rem, 6vw, 1.5rem); margin-top: 8px; line-height: 1.2; }
   .pop-badge-container-inner { width: 64px; height: 64px; }
   .pop-badge-center { font-size: 0.95rem; }
-  .el-5 { top: -25px; right: 5px; }
+  .el-5 { top: -35px; right: 0px; }
 
   .tape-wrapper { height: 94px; }
   .tape-track span { font-size: 1.1rem; }
