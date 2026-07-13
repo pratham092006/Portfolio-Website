@@ -204,59 +204,111 @@ if (homePage && kText) {
   });
 
   // Gyroscope / Device Orientation Support
-  function handleOrientation(e) {
-    if (isTouching) return; // Prevent fighting with manual touch drags
-    
-    const gamma = e.gamma; // tilt left/right [-90, 90]
-    const beta = e.beta;   // tilt front/back [-180, 180]
-    
-    if (gamma === null || beta === null) return;
-    
-    // Normalize phone tilt based on standard holding angle (~55deg)
-    const targetBeta = beta - 55;
-    
-    // Constrain ranges to map to tilt max walks
-    const constrainedGamma = Math.max(-25, Math.min(25, gamma));
-    const constrainedBeta = Math.max(-25, Math.min(25, targetBeta));
-    
-    // Map to degrees
-    const xWalk = constrainedGamma;
-    const yWalk = -constrainedBeta;
-    
-    kText.style.transform = `rotateY(${xWalk}deg) rotateX(${yWalk}deg)`;
-    
+  let gyroActive = false;
+  let latestGamma = 0, latestBeta = 0;
+  let gyroRAF = null;
+
+  function applyGyroTilt() {
+    if (isTouching || !gyroActive) return;
+
+    const targetBeta = latestBeta - 55;
+    const cGamma = Math.max(-25, Math.min(25, latestGamma));
+    const cBeta  = Math.max(-25, Math.min(25, targetBeta));
+
+    kText.style.transform = `rotateY(${cGamma}deg) rotateX(${-cBeta}deg)`;
+
     floatEls.forEach((el) => {
-      const speed = parseFloat(el.getAttribute('data-speed')) || 10;
+      const speed   = parseFloat(el.getAttribute('data-speed')) || 10;
       const baseRot = parseFloat(el.getAttribute('data-rot')) || 0;
-      const xOffset = (constrainedGamma / 25) * speed;
-      const yOffset = (constrainedBeta / 25) * speed;
-      
-      el.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${baseRot}deg)`;
+      const xOff = (cGamma / 25) * speed;
+      const yOff = (cBeta  / 25) * speed;
+      el.style.transform = `translate(${xOff}px, ${yOff}px) rotate(${baseRot}deg)`;
     });
+
+    gyroRAF = requestAnimationFrame(applyGyroTilt);
+  }
+
+  function handleOrientation(e) {
+    if (e.gamma === null || e.beta === null) return;
+    latestGamma = e.gamma;
+    latestBeta  = e.beta;
+
+    if (!gyroActive) {
+      gyroActive = true;
+      gyroRAF = requestAnimationFrame(applyGyroTilt);
+    }
+  }
+
+  function enableGyroscope() {
+    window.addEventListener('deviceorientation', handleOrientation);
+  }
+
+  // Remove permission button once granted
+  function removeMotionBtn() {
+    const btn = document.getElementById('enableMotionBtn');
+    if (btn) {
+      btn.style.opacity = '0';
+      btn.style.transform = 'translateY(10px)';
+      setTimeout(() => btn.remove(), 400);
+    }
   }
 
   function initGyroscope() {
-    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-      // iOS 13+ requires user gesture to grant sensor permission
-      const requestGyroPermission = () => {
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (!isMobile) return;
+
+    const needsPermission = typeof DeviceOrientationEvent !== 'undefined'
+      && typeof DeviceOrientationEvent.requestPermission === 'function';
+
+    if (needsPermission) {
+      // iOS 13+ — create a visible button the user must tap
+      const btn = document.createElement('button');
+      btn.id = 'enableMotionBtn';
+      btn.textContent = '🔄 ENABLE MOTION';
+      btn.setAttribute('aria-label', 'Enable gyroscope motion effects');
+      Object.assign(btn.style, {
+        position: 'fixed',
+        bottom: '24px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: '99998',
+        padding: '14px 28px',
+        background: '#CCFF00',
+        color: '#000',
+        border: '3px solid #000',
+        borderRadius: '100px',
+        fontFamily: "'Anton', sans-serif",
+        fontSize: '1rem',
+        letterSpacing: '0.05em',
+        cursor: 'pointer',
+        boxShadow: '4px 4px 0 #000',
+        transition: 'opacity 0.4s, transform 0.4s',
+      });
+
+      btn.addEventListener('click', () => {
         DeviceOrientationEvent.requestPermission()
-          .then((permissionState) => {
-            if (permissionState === 'granted') {
-              window.addEventListener('deviceorientation', handleOrientation);
+          .then((state) => {
+            if (state === 'granted') {
+              enableGyroscope();
+              removeMotionBtn();
+            } else {
+              btn.textContent = '⚠ PERMISSION DENIED';
+              btn.style.background = '#FF00CC';
+              setTimeout(() => btn.remove(), 2000);
             }
           })
-          .catch(console.error);
-        
-        // Cleanup interaction listeners once requested
-        document.removeEventListener('click', requestGyroPermission);
-        document.removeEventListener('touchstart', requestGyroPermission);
-      };
-      
-      document.addEventListener('click', requestGyroPermission);
-      document.addEventListener('touchstart', requestGyroPermission);
-    } else {
-      // Android / other browsers
-      window.addEventListener('deviceorientation', handleOrientation);
+          .catch((err) => {
+            console.error('Gyroscope permission error:', err);
+            btn.textContent = '⚠ REQUIRES HTTPS';
+            btn.style.background = '#FF00CC';
+            setTimeout(() => btn.remove(), 2500);
+          });
+      });
+
+      document.body.appendChild(btn);
+    } else if (typeof DeviceOrientationEvent !== 'undefined') {
+      // Android & non-permission browsers — enable directly
+      enableGyroscope();
     }
   }
 
