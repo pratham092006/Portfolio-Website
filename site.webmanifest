@@ -1,12 +1,24 @@
 {
-  "name": "Pratham Uday Pingle Portfolio",
+  "name": "Pratham Pingle | Full Stack Developer in Mumbai",
   "short_name": "Pratham Pingle",
-  "description": "Portfolio of Pratham Uday Pingle, Flutter app developer and web developer from Mumbai.",
+  "description": "Portfolio of Pratham Pingle, a Full Stack Developer and AI/ML Developer in Mumbai specializing in React, Node.js, Python, Flutter.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f3ed",
   "theme_color": "#00ccff",
+  "lang": "en-IN",
+  "categories": ["portfolio", "developer", "technology"],
   "icons": [
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",

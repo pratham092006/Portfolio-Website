@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /node_modules/
 
+# Sitemap
 Sitemap: https://www.prathamcodes.social/sitemap.xml
+
+# Host
+Host: https://www.prathamcodes.social
